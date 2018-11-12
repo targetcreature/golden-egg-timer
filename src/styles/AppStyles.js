@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { rgba } from "polished"
 import media from "../utils/media"
 
 const ratio = 9/16
@@ -37,10 +38,25 @@ const AppX = styled.div`
         display: block;
     }
 
-    .go{
-      font-size:4em;
+    button{
+      font-size:2em;
+      border-radius: 5px;
+      margin-right: 10px;
+      background: ${rgba("white",0.5)};
+      border: 1px solid #FFF;
+      cursor: pointer;
     }
 
+    .egg-container{
+      width:250px;
+      height:325px;
+      border-radius: 100%;
+      background: gold;
+      .egg-timer{
+        font-size: 10.8px;
+        letter-spacing: 3px;
+      }
+    }
 `
 
 export { AppX }

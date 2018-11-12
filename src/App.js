@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import people from "./data/people"
+import currency from "format-currency"
 // import logo from './logo.svg'
 import {
-  AppX
+  AppX,
 } from "./styles/AppStyles"
 
-// import {
-//   Stage
-//   ,Rect
-//   ,Layer
-//  } from "react-konva"
+import {
+  Stage,
+  Layer,
+  Circle,
+  Ellipse,
+  TextPath
+ } from "react-konva"
 
 class App extends Component {
   constructor(props){
@@ -21,6 +24,7 @@ class App extends Component {
       time: 10,
       people: people,
       person: Object.keys(people)[0],
+      twisting:false,
     }
   }
 
@@ -35,7 +39,9 @@ class App extends Component {
   }
 
   startTimer = () => {
-    this.setState({timer: setInterval(this.tick,1000) })
+    if(this.state.time > 0){
+      this.setState({timer: setInterval(this.tick,1000) })
+    }
   }
 
   stopTimer = () => {
@@ -53,8 +59,16 @@ class App extends Component {
   }
 
   moneyTick = () => {
-    const rate = people[this.state.person]
+    const seconds = 60 * 60 * 40 * 52
+    const rate = (people[this.state.person].rate * 1000000) / seconds
     this.setState({money:this.state.money+rate})
+  }
+
+  reset = () => {
+    this.setState({
+      time:0,
+      money:0,
+    })
   }
 
 
@@ -65,14 +79,19 @@ class App extends Component {
         <Timer startTime={this.state.startTime} onChange={this.timeOnChange}/>
         <Time time={this.state.time} />
         <Money money={this.state.money}/>
-        <Go startTimer={this.startTimer}/>
+        <Knob knobTwist={this.knobTwist} time={this.state.time}/>
+        <div className="buttons">
+          <button name="start" onClick={this.startTimer}>START</button>
+          <button name="stop" onClick={this.stopTimer}>STOP</button>
+          <button name="reset" onClick={this.reset}>RESET</button>
+        </div>
       </AppX>
-    )
-  }
-}
+        )
+        }
+        }
 
-function Timer(props){
-  return(
+        function Timer(props){
+          return(
     <div className="timer">
 
       <input
@@ -82,7 +101,6 @@ function Timer(props){
         max="3600"
         className="get"
         onChange={props.onChange}
-        value={props.startTime}
       />
 
     </div>
@@ -123,18 +141,103 @@ function Time(props){
 }
 
 function Money(props){
+  let opts = {
+    format: '%s%v',
+    symbol: '$'
+  }
+  const pay = currency(props.money,opts)
 
   return(
     <div className="money">
-      Money: ${props.money}
+      Money: {pay}
     </div>
   )
 }
 
-function Go(props){
+function Knob(props){
+  let string = ""
+  for(let i=0, n=60; i<n; i++){
+    const k = i%5 === 0 ? i : "'"
+    string += k
+  }
   return(
-    <button className="go" name="go" onClick={props.startTimer}>GO</button>
-  )
+    <div className="egg-container">
+      <svg className="egg-timer" viewBox="-75 -75 150 150">
+        <path
+          id="eggtime"
+          fill="none"
+          stroke="none"
+          d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
+        />
+        <text
+          width="2px"
+        >
+          <textPath href="#eggtime">
+            {string}
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+        )
+}
+
+        function Knob2(props){
+          let string = ""
+          for(let i=0, n=60; i<n; i++){
+            const k = i%5 === 0 ? i : "'"
+            string += k
+          }
+          const width = 150
+          return(
+            <Stage
+              width={width*2}
+              height={width*2.25}
+            >
+              <Layer>
+                <Ellipse
+                  x={width}
+                  y={width}
+                  radius={{
+                    x:width*0.8,
+                    y:width
+                  }}
+                  fill={"pink"}
+                />
+              </Layer>
+              <Layer
+                offsetX={width/2}
+                offsetY={width/2}
+                x={width}
+                y={width*1.15}
+                rotation={parseInt(props.time)}
+              >
+                <Circle
+                  x={width/2}
+                  y={width/2}
+                  radius={width*0.4}
+                  fill={"green"}
+                  stroke={"black"}
+                />
+                <TextPath
+                  x={width/2}
+                  y={35}
+                  fill={"black"}
+                  text={string}
+                  fontSize={21}
+                  data={"M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"}
+
+          />
+          {/* <Circle
+            x={width/2}
+            y={35}
+            radius={width*0.075}
+            fill={"green"}
+            stroke={"black"}
+          /> */}
+        </Layer>
+      </Stage>
+      )
 }
 
 
