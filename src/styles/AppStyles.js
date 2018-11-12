@@ -63,6 +63,7 @@ const EggX = styled.div`
   left:calc(((${height} * ${ratio}) - 365px)/2);
   top:20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   border-radius: 100%;
   background: radial-gradient(ellipse at top, #FFD200, #F7971E);
@@ -71,13 +72,9 @@ const EggX = styled.div`
     width:350px;
     height:475px;
   }
-  .people{
-    display: none;
-  }
   .money-container{
-    position: relative;
     align-self: center;
-    margin-top: 100px;
+    margin-top: 125px;
   }
   .bar{
     div{
@@ -85,12 +82,14 @@ const EggX = styled.div`
     }
   }
   .left{
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    ${'' /* border-top-left-radius: 5px; */}
+    ${'' /* border-bottom-left-radius: 5px; */}
+    border-radius: 5px;
     background: #000;
     padding: 20px 20px 0;
   }
   .right{
+    display: none;
     background: #333;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -111,23 +110,25 @@ const EggX = styled.div`
     text-align: center;
     }
   }
-  .time{
-
-  }
+.dial-container{
+  position: absolute;
+  align-self: center;
+  top:41%;
+  text-align: center;
+  transform: scale(1.5)
+}
+.arrow{
+  font-size: 14px;
+}
   .dial{
-    display: none;
-    position: relative;
-    left:-8px;
-    top:95px;
     font-size: 10px;
     border-radius: 100%;
-    padding: 10px;
-    background: radial-gradient(closest-side, #FFD200 50%, #F7971E);
-    transform: scale(0.75) rotate(90deg);
+    padding: 5px;
+    transform: rotate(90deg);
     box-shadow: 0px 0px 10px #000;
   }
   .rotate{
-    transform: rotate(${props => props.time*2}deg);
+    transform: rotate(${props => props.time*6}deg);
   }
 `
 

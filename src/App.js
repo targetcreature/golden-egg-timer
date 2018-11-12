@@ -119,9 +119,35 @@ function People(props){
 }
 
 function Egg(props){
-let opts = { format: '%v' }
+  return(
+    <EggX time={props.time}>
+      <Money time={props.time} money={props.money}/>
+      <Dial/>
+    </EggX>
+
+        )
+}
+
+function Money(props){
+  let opts = { format: '%v' }
   const pay = currency(props.money,opts)
 
+  return(
+    <div className="money-container">
+      <div className="bar">
+        <div className="left">
+          <div className="dollar">$</div>
+          <div className="money">{pay}</div>
+        </div>
+        {/* <div className="right"> */}
+        {/* <div className="time">{props.time}</div> */}
+        {/* </div> */}
+      </div>
+    </div>
+  )
+}
+
+function Dial(props){
   const area = Math.PI*150^2
   let string = ""
   for(let i=0, n=60; i<n; i++){
@@ -130,39 +156,35 @@ let opts = { format: '%v' }
   }
 
   return(
-    <EggX>
-      <div className="people">
-        <People/>
+    <div className="dial-container">
+
+      <div className="arrow">
+        <svg height="10" width="10">
+          <polygon points="0,0 5,10 10,0"/>
+        </svg>
       </div>
-      <div className="money-container">
-        <div className="bar">
-          <div className="left">
-            <div className="dollar">$</div>
-            <div className="money">{pay}</div>
-          </div>
-          <div className="right">
-            <div className="time">{props.time}</div>
-          </div>
+
+      <div className="rotate">
+
+        <div className="dial">
+
+          <svg class="dialSVG" viewBox="-75 -75 150 150" width="150" height="150">
+            <path
+              id="eggtime"
+              fill="none"
+              stroke="none"
+              d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
+            />
+            <text>
+              <textPath href="#eggtime" textLength={area}>
+                {string}
+              </textPath>
+            </text>
+          </svg>
         </div>
       </div>
-    </EggX>
+    </div>
+      )
+      }
 
-        )
-}
-
-{/* <svg className="dial" viewBox="-75 -75 150 150">
-  <path
-    id="eggtime"
-    fill="none"
-    stroke="none"
-    d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
-    transform="scale(+1,+1)"
-  />
-  <text width="2px">
-    <textPath href="#eggtime" textLength={area}>
-      {string}
-    </textPath>
-  </text>
-</svg> */}
-
-export default App
+      export default App
