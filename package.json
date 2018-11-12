@@ -4,11 +4,9 @@
   "private": true,
   "dependencies": {
     "format-currency": "^1.0.0",
-    "konva": "^2.5.1",
     "polished": "^2.3.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
-    "react-konva": "^16.6.1-1",
     "react-scripts": "2.1.1",
     "styled-components": "^4.0.3"
   },

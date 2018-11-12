@@ -4,24 +4,17 @@ import currency from "format-currency"
 // import logo from './logo.svg'
 import {
   AppX,
+  EggX
 } from "./styles/AppStyles"
-
-import {
-  Stage,
-  Layer,
-  Circle,
-  Ellipse,
-  TextPath
- } from "react-konva"
 
 class App extends Component {
   constructor(props){
     super(props)
 
     this.state = {
-      startTime:10,
+      lastTime: 60,
       money: 0,
-      time: 10,
+      time: 60,
       people: people,
       person: Object.keys(people)[0],
       twisting:false,
@@ -30,12 +23,11 @@ class App extends Component {
 
 
   timeOnChange = (event) => {
-    this.setState({time:event.target.value})
+    this.setState({time:event.target.value,lastTime:event.target.value})
   }
 
-  peopleOnSelect = (e) => {
-    console.log(e)
-    this.setState({person:e.target.id})
+  peopleOnChange = (e) => {
+    this.setState({person:e.target.value})
   }
 
   startTimer = () => {
@@ -66,7 +58,8 @@ class App extends Component {
 
   reset = () => {
     this.setState({
-      time:0,
+      lastTime:60,
+      time:60,
       money:0,
     })
   }
@@ -75,35 +68,35 @@ class App extends Component {
   render() {
     return (
       <AppX>
-        <People person={this.state.person}/>
-        <Timer startTime={this.state.startTime} onChange={this.timeOnChange}/>
-        <Time time={this.state.time} />
-        <Money money={this.state.money}/>
-        <Knob knobTwist={this.knobTwist} time={this.state.time}/>
+        <div className="egg-container">
+          <Egg knobTwist={this.knobTwist} time={this.state.time} money={this.state.money} timeOnChange={this.timeOnChange}/>
+        </div>
+        <People person={this.state.person} onChange={this.peopleOnChange}/>
+        <Timer lastTime={this.state.lastTime} onChange={this.timeOnChange}/>
         <div className="buttons">
           <button name="start" onClick={this.startTimer}>START</button>
           <button name="stop" onClick={this.stopTimer}>STOP</button>
           <button name="reset" onClick={this.reset}>RESET</button>
         </div>
       </AppX>
-        )
-        }
-        }
+    )
+  }
+}
 
-        function Timer(props){
-          return(
-    <div className="timer">
-
-      <input
-        type="number"
-        name="countdown"
-        min="1"
-        max="3600"
-        className="get"
-        onChange={props.onChange}
-      />
-
-    </div>
+function Timer(props){
+  let options = []
+  for(let i=1; i<61; i++){
+    options.push(
+      <option key={i} value={i}>{i}</option>
+    )
+  }
+  return(
+    <select
+      value={props.lastTime}
+      onChange={props.onChange}
+    >
+      {options}
+    </select>
   )
 }
 
@@ -112,133 +105,64 @@ function People(props){
   const options = []
   for(let i=0; i<list.length; i++){
     options.push(
-      <div key={list[i]} className="person">
-        <input
-          type="radio"
-          id={list[i]}
-          name="people"
-          onChange={props.peopleOnSelect}
-          defaultChecked={i===0}
-        />
-        <label for={list[i]}>{list[i]}</label>
-      </div>
+        <option key={list[i]} value={list[i]}>{list[i]}</option>
     )
   }
   return (
-    <div className="people">
+    <select
+      value={props.person}
+      onChange={props.onChange}
+    >
       {options}
-    </div>
+    </select>
       )
 }
 
-
-function Time(props){
-  return (
-    <div className="time">
-      Time: {props.time}
-    </div>
-  )
-}
-
-function Money(props){
-  let opts = {
-    format: '%s%v',
-    symbol: '$'
-  }
+function Egg(props){
+let opts = { format: '%v' }
   const pay = currency(props.money,opts)
 
-  return(
-    <div className="money">
-      Money: {pay}
-    </div>
-  )
-}
-
-function Knob(props){
+  const area = Math.PI*150^2
   let string = ""
   for(let i=0, n=60; i<n; i++){
-    const k = i%5 === 0 ? i : "'"
+    const k = i%5 === 0 ? i : ","
     string += k
   }
+
   return(
-    <div className="egg-container">
-      <svg className="egg-timer" viewBox="-75 -75 150 150">
-        <path
-          id="eggtime"
-          fill="none"
-          stroke="none"
-          d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
-        />
-        <text
-          width="2px"
-        >
-          <textPath href="#eggtime">
-            {string}
-          </textPath>
-        </text>
-      </svg>
-    </div>
+    <EggX>
+      <div className="people">
+        <People/>
+      </div>
+      <div className="money-container">
+        <div className="bar">
+          <div className="left">
+            <div className="dollar">$</div>
+            <div className="money">{pay}</div>
+          </div>
+          <div className="right">
+            <div className="time">{props.time}</div>
+          </div>
+        </div>
+      </div>
+    </EggX>
 
         )
 }
 
-        function Knob2(props){
-          let string = ""
-          for(let i=0, n=60; i<n; i++){
-            const k = i%5 === 0 ? i : "'"
-            string += k
-          }
-          const width = 150
-          return(
-            <Stage
-              width={width*2}
-              height={width*2.25}
-            >
-              <Layer>
-                <Ellipse
-                  x={width}
-                  y={width}
-                  radius={{
-                    x:width*0.8,
-                    y:width
-                  }}
-                  fill={"pink"}
-                />
-              </Layer>
-              <Layer
-                offsetX={width/2}
-                offsetY={width/2}
-                x={width}
-                y={width*1.15}
-                rotation={parseInt(props.time)}
-              >
-                <Circle
-                  x={width/2}
-                  y={width/2}
-                  radius={width*0.4}
-                  fill={"green"}
-                  stroke={"black"}
-                />
-                <TextPath
-                  x={width/2}
-                  y={35}
-                  fill={"black"}
-                  text={string}
-                  fontSize={21}
-                  data={"M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"}
-
-          />
-          {/* <Circle
-            x={width/2}
-            y={35}
-            radius={width*0.075}
-            fill={"green"}
-            stroke={"black"}
-          /> */}
-        </Layer>
-      </Stage>
-      )
-}
-
+{/* <svg className="dial" viewBox="-75 -75 150 150">
+  <path
+    id="eggtime"
+    fill="none"
+    stroke="none"
+    d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
+    transform="scale(+1,+1)"
+  />
+  <text width="2px">
+    <textPath href="#eggtime" textLength={area}>
+      {string}
+    </textPath>
+  </text>
+</svg> */}
 
 export default App
