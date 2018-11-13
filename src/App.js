@@ -10,16 +10,22 @@ import {
 class App extends Component {
   constructor(props){
     super(props)
-
+    this.defaults = {
+      timeType:"sec",
+      lastTime:15,
+      time:15,
+      money:0,
+      dial:15,
+    }
     this.state = {
-      timeType: "sec",
-      lastTime: 15,
-      money: 0,
-      time: 15,
-      dial: 15,
-      person: Object.keys(people)[0],
+      person: Object.keys(people)[0]
     }
   }
+
+  componentDidMount = () => {
+    this.setState({...this.defaults })
+  }
+
 
 
   timeOnChange = (event) => {
@@ -77,13 +83,8 @@ class App extends Component {
 }
 
   reset = () => {
-    this.setState({
-      timeType:"sec",
-      lastTime:15,
-      time:15,
-      money:0,
-      dial:15
-    })
+    this.stopTimer()
+    this.setState({...this.defaults })
   }
 
 
