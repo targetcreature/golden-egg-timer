@@ -109,8 +109,8 @@ const EggX = styled.div`
   .dial{
     font-size: 10px;
     border-radius: 100%;
-    padding: 4px 2px 2px 2px;
-    transform: rotate(90deg);
+    ${'' /* padding: 4px 2px 2px 2px; */}
+    transform: rotate(-87deg);
     box-shadow: 0px 0px 8px #000;
     background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
                 radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
