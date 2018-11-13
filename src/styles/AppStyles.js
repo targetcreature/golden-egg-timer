@@ -36,24 +36,27 @@ const AppX = styled.div`
       margin-bottom: 20px;
     }
 
-    .person{
-        display: block;
+    .timeSelect{
+    }
+    .personSelect{
     }
 
     select{
       margin-right: 5px;
+      margin-bottom: 5px;
+      font-size: 16px;
+      padding: 10px;
     }
     button{
       margin-right: 5px;
-    }
-
-    .egg-container{
-      margin-bottom: 40px;
+      font-size: 16px;
+      padding: 10px;
     }
 
 `
 
 const EggX = styled.div`
+  margin-bottom: 40px;
   position: relative;
   width:350px;
   height:475px;
@@ -73,38 +76,21 @@ const EggX = styled.div`
     height:475px;
   }
   .money-container{
+    z-index:1;
     align-self: center;
     margin-top: 125px;
-  }
-  .bar{
-    div{
-      display: inline-block;
-    }
-  }
-  .left{
-    ${'' /* border-top-left-radius: 5px; */}
-    ${'' /* border-bottom-left-radius: 5px; */}
     border-radius: 5px;
-    background: #000;
+    background: #222;
+    box-shadow: inset 0px 0px 25px #111;
     padding: 20px 20px 0;
   }
-  .right{
-    display: none;
-    background: #333;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 20px 20px 0 15px;
-    text-align: center;
-  }
-  .time{
-    color:lightcoral;
-    width: 30px;
-  }
   .dollar{
+    display: inline-block;
     margin-right: 5px;
     color:silver;
   }
   .money{
+    display: inline-block;
     color:lime;
     width:100px;
     text-align: center;
@@ -123,12 +109,14 @@ const EggX = styled.div`
   .dial{
     font-size: 10px;
     border-radius: 100%;
-    padding: 5px;
+    padding: 4px 2px 2px 2px;
     transform: rotate(90deg);
-    box-shadow: 0px 0px 10px #000;
+    box-shadow: 0px 0px 8px #000;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
   }
   .rotate{
-    transform: rotate(${props => props.time*6}deg);
+    transform: rotate(${props => props.dial*6}deg);
   }
 `
 
