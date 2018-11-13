@@ -192,28 +192,32 @@ function Dial(props){
         </svg>
       </div>
 
-      <div className="rotate">
+      <div className="dial-edge">
 
-        <div className="dial">
-          <svg viewBox="-87.5 -88.75 175 175" width="175" height="175">
-            <path
-              id="eggtime"
-              fill="none"
-              stroke="none"
-              d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
-              transform="scale(-1,1)"
-            />
 
-            <text className="ticks">
-              <textPath
-                href="#eggtime"
-                textLength={area*0.995}
-              >
-                {ticks}
-              </textPath>
-            </text>
+        <div className="rotate">
 
-          </svg>
+          <div className="dial">
+            <svg viewBox="-87.75 -88.75 175 175" width="175" height="175">
+              <path
+                id="eggtime"
+                fill="none"
+                stroke="none"
+                d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
+                transform="scale(-1,1)"
+              />
+
+              <text className="ticks">
+                <textPath
+                  href="#eggtime"
+                  textLength={area*0.995}
+                >
+                  {ticks}
+                </textPath>
+              </text>
+
+            </svg>
+          </div>
         </div>
       </div>
     </div>

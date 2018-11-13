@@ -56,7 +56,7 @@ const AppX = styled.div`
 `
 
 const EggX = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   position: relative;
   width:350px;
   height:475px;
@@ -69,7 +69,8 @@ const EggX = styled.div`
   flex-direction: column;
   justify-content: center;
   border-radius: 100%;
-  background: radial-gradient(ellipse at top, #FFD200, #F7971E);
+  background: radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #FFD200 25%, #F7971E 62.5%, #6e3e00 100%);
+  ${'' /* background: radial-gradient(ellipse at top, #FFD200, #F7971E); */}
 
   .egg{
     width:350px;
@@ -106,18 +107,23 @@ const EggX = styled.div`
 .arrow{
   font-size: 14px;
 }
+.dial-edge{
+  border-radius: 100%;
+  box-shadow: 0 0 20px #6e3e00, inset 0 0 5px #6e3e00;
+}
   .dial{
     font-size: 10px;
-    border-radius: 100%;
+    border-radius: 95%;
     ${'' /* padding: 4px 2px 2px 2px; */}
     transform: rotate(-87deg);
-    box-shadow: 0px 0px 8px #000;
-    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    background:
+      radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+      radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    box-shadow: inset 0 0 3px #6e3e00;
 
   }
   .rotate{
-    transform: rotate(${props => props.dial*6.105}deg);
+    transform: rotate(${props => props.dial*6.125}deg);
   }
 `
 
