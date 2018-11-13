@@ -173,11 +173,14 @@ function Money(props){
 }
 
 function Dial(props){
+  // const area = Math.PI*149.95^2
   const area = Math.PI*150^2
-  let string = ""
+  let ticks = ""
   for(let i=59, n=-1; i>n; i--){
-    const k = i%5 === 0 ? i : "'"
-    string += k
+    let k = i%5 === 0 ? i : " ' "
+    if(k===0) k = "00"
+    if(k===5) k = "05"
+    ticks += k
   }
 
   return(
@@ -190,6 +193,7 @@ function Dial(props){
       </div>
 
       <div className="rotate">
+
         <div className="dial">
           <svg viewBox="-87.5 -88.75 175 175" width="175" height="175">
             <path
@@ -199,17 +203,16 @@ function Dial(props){
               d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
               transform="scale(-1,1)"
             />
-            <text>
+
+            <text className="ticks">
               <textPath
                 href="#eggtime"
-                textLength={area}
-                // spacing="auto"
-                // method="stretch"
-                // side="right"
+                textLength={area*0.995}
               >
-                {string}
+                {ticks}
               </textPath>
             </text>
+
           </svg>
         </div>
       </div>
