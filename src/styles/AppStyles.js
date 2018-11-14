@@ -112,6 +112,7 @@ const EggX = styled.div`
   box-shadow: 0 0 20px #6e3e00, inset 0 0 5px #6e3e00;
 }
   .dial{
+    position: relative;
     font-size: 10px;
     border-radius: 95%;
     ${'' /* padding: 4px 2px 2px 2px; */}
@@ -121,6 +122,9 @@ const EggX = styled.div`
       radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
     box-shadow: inset 0 0 3px #6e3e00;
 
+    svg{
+      position: relative;
+    }
   }
   .rotate{
     transform: rotate(${props => props.dial*6.125}deg);

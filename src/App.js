@@ -199,7 +199,11 @@ function Dial(props){
         <div className="rotate">
 
           <div className="dial">
-            <svg viewBox="-87.75 -88.75 175 175" width="175" height="175">
+            <svg
+              viewBox="-87.75 -88.75 175 175"
+              width="175"
+              height="175"
+            >
               <path
                 id="eggtime"
                 fill="none"
@@ -211,6 +215,7 @@ function Dial(props){
               <text className="ticks">
                 <textPath
                   href="#eggtime"
+                  xlinkHref="#eggtime"
                   textLength={area*0.995}
                 >
                   {ticks}
