@@ -54,11 +54,35 @@ const AppX = styled.div`
       top:495px;
       margin-top: -125px;
     }
+    .base{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #FFF;
+      padding: 20px 0px;
+
+    }
     .menu{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      border: 1px solid #FFF;
+      padding: 20px 0px;
+    }
+    .menu-face{
+      border: 1px solid #FFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .faceplate{
+      display: inline-block;
+      border: 1px solid #FFF;
+      border-top-left-radius:100%;
+      border-top-right-radius:100%;
     }
     .buttons{
       margin-top: 20px;

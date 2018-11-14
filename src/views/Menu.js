@@ -25,40 +25,45 @@ const Timer = (props) => {
 
   const buttonSize = "1em"
   return(
-    <div className="menu">
-      <div className="settings">
-        <select
-          className="personSelect"
-          value={props.person}
-          onChange={props.peopleOnChange}
-        >
-          {peopleOpts}
-        </select>
+    <>
+      <div className="faceplate">Golden Egg Timer®</div>
+      <div className="menu">
+        <div className="menu-face">
+          <div className="settings">
+            <select
+              className="personSelect"
+              value={props.person}
+              onChange={props.peopleOnChange}
+            >
+              {peopleOpts}
+            </select>
 
-        <select
-          className="timeSelect"
-          value={props.lastTime}
-          onChange={props.timeOnChange}
-        >
-          {timeOpts}
-        </select>
+            <select
+              className="timeSelect"
+              value={props.lastTime}
+              onChange={props.timeOnChange}
+            >
+              {timeOpts}
+            </select>
 
-        <select
-          className="timeTypeSelect"
-          value={props.timeType}
-          onChange={props.timeTypeOnChange}
-        >
-          <option key={"sec"}>sec</option>
-          <option key={"min"}>min</option>
-        </select>
-    </div>
-      <div className="buttons">
-        <div className="play icon" onClick={props.toggleTimer} running={props.running}>
-          {playButton}
+            <select
+              className="timeTypeSelect"
+              value={props.timeType}
+              onChange={props.timeTypeOnChange}
+            >
+              <option key={"sec"}>sec</option>
+              <option key={"min"}>min</option>
+            </select>
+          </div>
+          <div className="buttons">
+            <div className="play icon" onClick={props.toggleTimer} running={props.running}>
+              {playButton}
+            </div>
+            <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
+          </div>
         </div>
-        <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
       </div>
-    </div>
+    </>
       )
 }
 
