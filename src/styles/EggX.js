@@ -7,7 +7,7 @@ const desktop_height = 75
 const height = desktop_height + "vh"
 
 const EggX = styled.div`
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   margin-right: 0px;
   margin-top: 0px;
   position: relative;

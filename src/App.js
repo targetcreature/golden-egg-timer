@@ -16,7 +16,7 @@ class App extends Component {
       running:0,
     }
     this.state = {
-      dial:15,
+      dial:16,
       time:15,
       lastTime:15,
       person: Object.keys(people)[0]
@@ -80,9 +80,14 @@ class App extends Component {
   }
 
   startTimer = () => {
-    // if(this.state.time > 0){
-      this.setState({timer: setInterval(this.tick,1000), running:1})
-    // }
+    this.moneyTick()
+    if(this.state.timeType === "min"){
+        this.setState({dial: this.state.dial-0.0167})
+    } else {
+      this.setState({dial: this.state.time})
+    }
+    this.timeTick()
+    this.setState({timer: setInterval(this.tick,1000), running:1})
   }
 
   stopTimer = () => {
@@ -90,7 +95,7 @@ class App extends Component {
     this.setState({running:0})
   }
 
-  tick = ()=> {
+  tick = () => {
     this.timeTick()
     this.moneyTick()
     this.dialTick()
@@ -111,13 +116,13 @@ class App extends Component {
     if(this.state.timeType === "min"){
         this.setState({dial: this.state.dial-0.0167})
     } else {
-      this.setState({dial: this.state.time})
+      this.setState({dial: this.state.time+1})
     }
   }
 
   reset = () => {
     this.stopTimer()
-    this.setState({...this.defaults, dial:this.state.lastTime, time:this.state.lastTime })
+    this.setState({...this.defaults, dial:this.state.lastTime+1, time:this.state.lastTime })
   }
 
 }

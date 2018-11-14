@@ -54,14 +54,18 @@ const AppX = styled.div`
       top:495px;
       margin-top: -125px;
     }
-
+    .menu{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .buttons{
-
+      margin-top: 20px;
     }
     .icon{
       display: inline-block;
       cursor: pointer;
-      background: #fff;
       border-radius: 100%;
       width: 48px;
       height: 48px;
@@ -69,6 +73,11 @@ const AppX = styled.div`
       justify-content: center;
       align-items: center;
       margin-right: 10px;
+      border: 2px solid rgba(56, 45, 19,0.75);
+      background: #fff;
+      background: rgba(#e6dfd1, 0.75);
+      box-shadow: inset 0 0 10px 1px rgba(255,255,255,0.25), 0px 3px 10px rgba(56, 45, 19,0.33);
+
     }
 
 `
