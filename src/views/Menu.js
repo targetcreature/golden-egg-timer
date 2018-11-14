@@ -21,9 +21,6 @@ const Timer = (props) => {
     )
   }
 
-  const playButton = props.running ? <FaPause size={buttonSize}/> : <FaPlay size={buttonSize}/>
-
-  const buttonSize = "1em"
   return(
     // <div className="base">
     //   <div className="faceplate-wrap">
@@ -31,42 +28,50 @@ const Timer = (props) => {
     //   </div>
       <div className="menu">
         {/* <div className="menu-face"> */}
-          <div className="settings">
-            <select
-              className="personSelect"
-              value={props.person}
-              onChange={props.peopleOnChange}
-            >
-              {peopleOpts}
-            </select>
+        <div className="settings">
+          <select
+            className="personSelect"
+            value={props.person}
+            onChange={props.peopleOnChange}
+          >
+            {peopleOpts}
+          </select>
 
-            <select
-              className="timeSelect"
-              value={props.lastTime}
-              onChange={props.timeOnChange}
-            >
-              {timeOpts}
-            </select>
+          <select
+            className="timeSelect"
+            value={props.lastTime}
+            onChange={props.timeOnChange}
+          >
+            {timeOpts}
+          </select>
 
-            <select
-              className="timeTypeSelect"
-              value={props.timeType}
-              onChange={props.timeTypeOnChange}
-            >
-              <option key={"sec"}>sec</option>
-              <option key={"min"}>min</option>
-            </select>
-          </div>
-          <div className="buttons">
-            <div className="play icon" onClick={props.toggleTimer} running={props.running}>
-              {playButton}
-            </div>
-            <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
-          </div>
+          <select
+            className="timeTypeSelect"
+            value={props.timeType}
+            onChange={props.timeTypeOnChange}
+          >
+            <option key={"sec"}>sec</option>
+            <option key={"min"}>min</option>
+          </select>
+          <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
         </div>
+      </div>
       // </div>
     // </div>
       )
+}
+
+function Buttons(props){
+  const buttonSize = "2.5em"
+  const playButton = props.running ? <FaPause size={buttonSize}/> : <FaPlay size={buttonSize}/>
+  return(
+  <div className="buttons">
+    <div className="play icon" onClick={props.toggleTimer} running={props.running}>
+      {playButton}
+    </div>
+    <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
+  </div>
+  )
 }
 
 const methods = {

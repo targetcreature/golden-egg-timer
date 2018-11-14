@@ -49,9 +49,9 @@ function Dial(props){
         </svg>
       </div>
 
-      <div className="rotate">
 
-        <div className="dial">
+      <div className="dial">
+        <div className="rotate">
           <svg
             viewBox="-87.75 -88.75 175 175"
             width="175"

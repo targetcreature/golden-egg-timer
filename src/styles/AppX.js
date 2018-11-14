@@ -44,12 +44,12 @@ const AppX = styled.div`
         left:calc((100vw - 365px)/2);
         transform: scale(0.75);
         margin-top: -90px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         `}
       left:calc(((${height} * ${ratio}) - 365px)/2);
       height: 100px;
       margin-top: -25px;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
 
     .egg-stand-top,
@@ -101,8 +101,6 @@ const AppX = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      ${'' /* border: 1px solid #FFF; */}
-      ${'' /* padding: 20px 0px; */}
     }
     .menu-face{
       border: 1px solid #FFF;
@@ -123,23 +121,14 @@ const AppX = styled.div`
       ${'' /* padding: 20px; */}
     }
     .buttons{
-      margin-top: 20px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
     }
     .icon{
       display: inline-block;
       cursor: pointer;
-      border-radius: 100%;
-      width: 48px;
-      height: 48px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 10px;
-      border: 2px solid rgba(56, 45, 19,0.75);
-      box-shadow: inset 0 0 10px 1px rgba(255,255,255,0.25), 0px 3px 10px rgba(56, 45, 19,0.33);
-      background: #fff;
-      background: rgba(#e6dfd1, 0.75);
-
+      margin: 0 20px;
     }
 
 `
