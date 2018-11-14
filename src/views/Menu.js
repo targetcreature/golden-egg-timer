@@ -25,10 +25,12 @@ const Timer = (props) => {
 
   const buttonSize = "1em"
   return(
-    <>
-      <div className="faceplate">Golden Egg Timer®</div>
+    // <div className="base">
+    //   <div className="faceplate-wrap">
+    //     <div className="faceplate">Golden Egg Timer®</div>
+    //   </div>
       <div className="menu">
-        <div className="menu-face">
+        {/* <div className="menu-face"> */}
           <div className="settings">
             <select
               className="personSelect"
@@ -62,8 +64,8 @@ const Timer = (props) => {
             <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
           </div>
         </div>
-      </div>
-    </>
+      // </div>
+    // </div>
       )
 }
 

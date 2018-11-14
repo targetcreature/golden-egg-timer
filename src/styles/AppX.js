@@ -57,32 +57,32 @@ const AppX = styled.div`
     .base{
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #FFF;
-      padding: 20px 0px;
-
     }
     .menu{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: 1px solid #FFF;
-      padding: 20px 0px;
+      ${'' /* border: 1px solid #FFF; */}
+      ${'' /* padding: 20px 0px; */}
     }
     .menu-face{
       border: 1px solid #FFF;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 20px;
+      ${'' /* padding: 10px 20px; */}
+    }
+    .faceplate-wrap{
+      display: flex;
+      justify-content: center;
     }
     .faceplate{
       display: inline-block;
       border: 1px solid #FFF;
       border-top-left-radius:100%;
       border-top-right-radius:100%;
+      ${'' /* padding: 20px; */}
     }
     .buttons{
       margin-top: 20px;
