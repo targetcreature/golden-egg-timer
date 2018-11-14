@@ -14,13 +14,13 @@ const People = (props) => {
     )
   }
   return (
-    <select
-      className="personSelect"
-      value={props.person}
-      onChange={props.onChange}
-    >
-      {options}
-    </select>
+      <select
+        className="personSelect"
+        value={props.person}
+        onChange={props.onChange}
+      >
+        {options}
+      </select>
       )
 }
 

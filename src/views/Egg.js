@@ -3,7 +3,7 @@ import lifecycle from "react-pure-lifecycle"
 import currency from "format-currency"
 import {
   EggX
-} from "../styles/AppStyles"
+} from "../styles/EggX"
 
 const componentDidMount = () => {}
 

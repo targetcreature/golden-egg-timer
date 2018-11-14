@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import people from "./data/people"
-// import logo from './logo.svg'
-import Timer from "./views/Timer"
-import People from "./views/People"
+import Menu from "./views/Menu"
 import Egg from "./views/Egg"
 import {
   AppX
-} from "./styles/AppStyles"
+} from "./styles/AppX"
+// import logo from './logo.svg'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.defaults = {
-      timeType:"sec",
-      lastTime:15,
-      time:15,
+      // timeType:"sec",
       money:0,
-      dial:15,
+      running:0,
     }
     this.state = {
+      dial:15,
+      time:15,
+      lastTime:15,
       person: Object.keys(people)[0]
     }
   }
@@ -27,20 +27,37 @@ class App extends Component {
     return (
       <AppX>
         <div className="egg-shadow"/>
-        <Egg knobTwist={this.knobTwist} time={this.state.time} money={this.state.money} timeOnChange={this.timeOnChange} dial={this.state.dial}/>
-        <People person={this.state.person} onChange={this.peopleOnChange}/>
-        <Timer lastTime={this.state.lastTime} onChange={this.timeOnChange} timeType={this.state.timeType} timeTypeOnChange={this.timeTypeOnChange}/>
-        <div className="buttons">
-          <button name="start" onClick={this.startTimer}>START</button>
-          <button name="stop" onClick={this.stopTimer}>STOP</button>
-          <button name="reset" onClick={this.reset}>RESET</button>
-        </div>
+        <Egg
+          knobTwist={this.knobTwist}
+          time={this.state.time}
+          money={this.state.money}
+          timeOnChange={this.timeOnChange}
+          dial={this.state.dial}
+        />
+        <Menu
+          person={this.state.person}
+          peopleOnChange={this.peopleOnChange}
+          running={this.state.running}
+          toggleTimer={this.toggleTimer}
+          timeOnChange={this.timeOnChange}
+          lastTime={this.state.lastTime}
+          timeType={this.state.timeType}
+          timeTypeOnChange={this.timeTypeOnChange}
+          startTimer={this.startTimer}
+          stopTimer={this.stopTimer}
+          reset={this.reset}
+        />
       </AppX>
     )
   }
 
   componentDidMount = () => {
     this.setState({...this.defaults })
+  }
+
+  toggleTimer = () => {
+    if(this.state.running) this.stopTimer()
+    else this.startTimer()
   }
 
   timeOnChange = (event) => {
@@ -63,14 +80,14 @@ class App extends Component {
   }
 
   startTimer = () => {
-    if(this.state.time > 0){
-      this.setState({timer: setInterval(this.tick,1000)})
-    }
+    // if(this.state.time > 0){
+      this.setState({timer: setInterval(this.tick,1000), running:1})
+    // }
   }
 
   stopTimer = () => {
     clearInterval(this.state.timer)
-    this.setState({time:this.state.lastTime})
+    this.setState({running:0})
   }
 
   tick = ()=> {
@@ -100,7 +117,7 @@ class App extends Component {
 
   reset = () => {
     this.stopTimer()
-    this.setState({...this.defaults })
+    this.setState({...this.defaults, dial:this.state.lastTime, time:this.state.lastTime })
   }
 
 }

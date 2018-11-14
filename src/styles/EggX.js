@@ -6,67 +6,6 @@ const ratio = 9/16
 const desktop_height = 75
 const height = desktop_height + "vh"
 
-const AppX = styled.div`
-    ${media.phone`
-      width:100vw;
-      height:100vh;
-    `}
-    height:${height};
-    width:calc(${height} * ${ratio});
-
-    font-size: 1.5em;
-
-    ul{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    background: darkkhaki;
-
-    .people,
-    .timer,
-    .time,
-    .money,
-    .go
-    {
-      margin-bottom: 20px;
-    }
-
-    .timeSelect{
-    }
-    .personSelect{
-    }
-
-    select{
-      margin-right: 5px;
-      margin-bottom: 5px;
-      font-size: 16px;
-      padding: 10px;
-    }
-    button{
-      margin-right: 5px;
-      font-size: 16px;
-      padding: 10px;
-    }
-
-    .egg-shadow{
-      position: relative;
-      width:350px;
-      height:50px;
-      border-radius: 100%;
-      background-image: radial-gradient(rgba(56, 45, 19,0.75) 25%, transparent 66%);
-      ${media.phone`
-        left:calc((100vw - 365px)/2);
-        transform: scale(0.75);
-        top:436px;
-      `}
-      left:calc(((${height} * ${ratio}) - 365px)/2);
-      top:495px;
-      margin-top: -125px;
-    }
-
-`
-
 const EggX = styled.div`
   margin-bottom: 60px;
   margin-right: 0px;
@@ -98,7 +37,7 @@ const EggX = styled.div`
     border-radius: 5px;
     background: #222;
     box-shadow: inset 0px 0px 25px #111;
-    padding: 20px 20px 0;
+    padding: 15px;
   }
   .dollar{
     display: inline-block;
@@ -140,5 +79,4 @@ const EggX = styled.div`
   transform: rotate(${props => props.dial*6.125}deg);
 }
 `
-
-export { AppX, EggX }
+export { EggX }
