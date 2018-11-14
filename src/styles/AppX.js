@@ -38,22 +38,60 @@ const AppX = styled.div`
       cursor: pointer;
     }
 
-
-    .egg-shadow{
+    .egg-stand-wrap{
       position: relative;
-      width:350px;
-      height:50px;
-      border-radius: 100%;
-      background-image: radial-gradient(rgba(56, 45, 19,0.75) 25%, transparent 66%);
       ${media.phone`
         left:calc((100vw - 365px)/2);
         transform: scale(0.75);
-        top:436px;
-      `}
+        margin-top: -90px;
+        margin-bottom: 20px;
+        `}
       left:calc(((${height} * ${ratio}) - 365px)/2);
-      top:495px;
-      margin-top: -125px;
+      height: 100px;
+      margin-top: -25px;
+      margin-bottom: 50px;
     }
+
+    .egg-stand-top,
+    .egg-stand-bottom{
+      position: absolute;
+      width:350px;
+      background: linear-gradient(to right, rgb(167, 167, 167) 0%, #fff 15%, rgb(167, 167, 167) 80%,rgb(108, 108, 108) 100%);
+    }
+
+    .egg-stand-top{
+      border-top-right-radius: 100%;
+      border-top-left-radius: 100%;
+      height:50px;
+      top:0px;
+    }
+
+    .egg-stand-bottom{
+      border-bottom-left-radius: 100%;
+      border-bottom-right-radius: 100%;
+      height:80px;
+      top:40px;
+      background:
+      linear-gradient(to right, rgb(167, 167, 167) 0%, #fff 15%, rgb(167, 167, 167) 80%,rgb(108, 108, 108) 100%);
+      border-bottom: 2px solid rgba(0,0,0,0.5);
+    }
+    .egg-stand-title{
+      position: absolute;
+      font-size: 40px;
+      width: 350px;
+      text-align: center;
+      top: 63px;
+      color: rgba(0,0,0,0.75);
+      text-shadow: 1px 1px 0px rgba(255,255,255,1);
+    }
+    .egg-shadow{
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      margin-top: -5px;
+      background-image: radial-gradient(rgba(0,0,0,0.6) 25%, transparent 66%);
+    }
+
     .base{
       display: flex;
       flex-direction: column;
@@ -98,9 +136,9 @@ const AppX = styled.div`
       align-items: center;
       margin-right: 10px;
       border: 2px solid rgba(56, 45, 19,0.75);
+      box-shadow: inset 0 0 10px 1px rgba(255,255,255,0.25), 0px 3px 10px rgba(56, 45, 19,0.33);
       background: #fff;
       background: rgba(#e6dfd1, 0.75);
-      box-shadow: inset 0 0 10px 1px rgba(255,255,255,0.25), 0px 3px 10px rgba(56, 45, 19,0.33);
 
     }
 

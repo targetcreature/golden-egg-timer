@@ -7,7 +7,8 @@ const desktop_height = 75
 const height = desktop_height + "vh"
 
 const EggX = styled.div`
-  margin-bottom: -20px;
+  z-index: 1;
+  margin-bottom: 0px;
   margin-right: 0px;
   margin-top: 0px;
   position: relative;
@@ -24,6 +25,7 @@ const EggX = styled.div`
   ${media.phone`
     left:calc((100vw - 365px)/2);
     transform: scale(0.75);
+    margin-bottom: -20px;
   `}
 
   .egg{

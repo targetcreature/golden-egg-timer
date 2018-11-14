@@ -5,6 +5,7 @@ import Egg from "./views/Egg"
 import {
   AppX
 } from "./styles/AppX"
+import "./styles/Fonts.css"
 // import logo from './logo.svg'
 
 class App extends Component {
@@ -26,7 +27,6 @@ class App extends Component {
   render() {
     return (
       <AppX>
-        <div className="egg-shadow"/>
         <Egg
           knobTwist={this.knobTwist}
           time={this.state.time}
@@ -34,6 +34,14 @@ class App extends Component {
           timeOnChange={this.timeOnChange}
           dial={this.state.dial}
         />
+        <div className="egg-stand-wrap">
+          <div className="egg-stand-bottom"/>
+          <div className="egg-stand-top">
+            <div className="egg-shadow"/>
+          </div>
+          <div className="egg-stand-title">
+          Golden Egg Timer</div>
+        </div>
         <Menu
           person={this.state.person}
           peopleOnChange={this.peopleOnChange}

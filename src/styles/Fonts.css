@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Fancy";
+  src: url(../assets/SymphonieCAT.ttf) format("truetype");
+}
+
+.egg-stand-title
+{
+  font-family: "Fancy";
+}
