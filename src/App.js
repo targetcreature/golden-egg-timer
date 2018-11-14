@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import people from "./data/people"
-import currency from "format-currency"
 // import logo from './logo.svg'
+import Timer from "./views/Timer"
+import People from "./views/People"
+import Egg from "./views/Egg"
 import {
-  AppX,
-  EggX
+  AppX
 } from "./styles/AppStyles"
 
 class App extends Component {
@@ -22,11 +23,25 @@ class App extends Component {
     }
   }
 
+  render() {
+    return (
+      <AppX>
+        <div className="egg-shadow"/>
+        <Egg knobTwist={this.knobTwist} time={this.state.time} money={this.state.money} timeOnChange={this.timeOnChange} dial={this.state.dial}/>
+        <People person={this.state.person} onChange={this.peopleOnChange}/>
+        <Timer lastTime={this.state.lastTime} onChange={this.timeOnChange} timeType={this.state.timeType} timeTypeOnChange={this.timeTypeOnChange}/>
+        <div className="buttons">
+          <button name="start" onClick={this.startTimer}>START</button>
+          <button name="stop" onClick={this.stopTimer}>STOP</button>
+          <button name="reset" onClick={this.reset}>RESET</button>
+        </div>
+      </AppX>
+    )
+  }
+
   componentDidMount = () => {
     this.setState({...this.defaults })
   }
-
-
 
   timeOnChange = (event) => {
     const time = this.state.timeType === "min" ? event.target.value * 60 : event.target.value
@@ -37,6 +52,7 @@ class App extends Component {
       dial:event.target.value
     })
   }
+
   timeTypeOnChange = (event) => {
     this.stopTimer()
     this.setState({timeType:event.target.value, dial:this.state.lastTime})
@@ -75,159 +91,18 @@ class App extends Component {
   }
 
   dialTick = () => {
-  if(this.state.timeType === "min"){
-      this.setState({dial: this.state.dial-0.0167})
-  } else {
-    this.setState({dial: this.state.time})
+    if(this.state.timeType === "min"){
+        this.setState({dial: this.state.dial-0.0167})
+    } else {
+      this.setState({dial: this.state.time})
+    }
   }
-}
 
   reset = () => {
     this.stopTimer()
     this.setState({...this.defaults })
   }
 
-
-  render() {
-    return (
-      <AppX>
-        <Egg knobTwist={this.knobTwist} time={this.state.time} money={this.state.money} timeOnChange={this.timeOnChange} dial={this.state.dial}/>
-        <People person={this.state.person} onChange={this.peopleOnChange}/>
-        <Timer lastTime={this.state.lastTime} onChange={this.timeOnChange} timeType={this.state.timeType} timeTypeOnChange={this.timeTypeOnChange}/>
-        <div className="buttons">
-          <button name="start" onClick={this.startTimer}>START</button>
-          <button name="stop" onClick={this.stopTimer}>STOP</button>
-          <button name="reset" onClick={this.reset}>RESET</button>
-        </div>
-      </AppX>
-    )
-  }
 }
 
-function Timer(props){
-  let options = []
-  for(let i=1; i<61; i++){
-    options.push(
-      <option key={i} value={i}>{i}</option>
-    )
-  }
-  return(
-    <>
-      <select
-        className="timeSelect"
-        value={props.lastTime}
-        onChange={props.onChange}
-      >
-        {options}
-      </select>
-      <select
-        className="secondSelect"
-        value={props.timeType}
-        onChange={props.timeTypeOnChange}
-      >
-        <option key={"sec"}>sec</option>
-        <option key={"min"}>min</option>
-      </select>
-    </>
-      )
-}
-
-function People(props){
-  const list = Object.keys(people)
-  const options = []
-  for(let i=0; i<list.length; i++){
-    options.push(
-        <option key={list[i]} value={list[i]}>{list[i]}</option>
-    )
-  }
-  return (
-    <select
-      className="personSelect"
-      value={props.person}
-      onChange={props.onChange}
-    >
-      {options}
-    </select>
-      )
-}
-
-function Egg(props){
-  return(
-    <EggX time={props.time} timeType={props.timeType} dial={props.dial}>
-      <Money money={props.money}/>
-      <Dial/>
-    </EggX>
-
-        )
-}
-
-function Money(props){
-  let opts = { format: '%v' }
-  const pay = currency(props.money,opts)
-
-  return(
-    <div className="money-container">
-      <div className="dollar">$</div>
-      <div className="money">{pay}</div>
-    </div>
-  )
-}
-
-function Dial(props){
-  // const area = Math.PI*149.95^2
-  const area = Math.PI*150^2
-  let ticks = ""
-  for(let i=59, n=-1; i>n; i--){
-    let k = i%5 === 0 ? i : " ' "
-    if(k===0) k = "00"
-    if(k===5) k = "05"
-    ticks += k
-  }
-
-  return(
-    <div className="dial-container">
-
-      <div className="arrow">
-        <svg height="10" width="10">
-          <polygon points="0,0 5,10 10,0"/>
-        </svg>
-      </div>
-
-      <div className="dial-edge">
-
-
-        <div className="rotate">
-
-          <div className="dial">
-            <svg
-              viewBox="-87.75 -88.75 175 175"
-              width="175"
-              height="175"
-            >
-              <path
-                id="eggtime"
-                fill="none"
-                stroke="none"
-                d="M-75,0a75,75 0 1,0 150,0a75,75 0 1,0 -150,0"
-                transform="scale(-1,1)"
-              />
-
-              <text className="ticks">
-                <textPath
-                  href="#eggtime"
-                  xlinkHref="#eggtime"
-                  textLength={area*0.995}
-                >
-                  {ticks}
-                </textPath>
-              </text>
-
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-      )
-      }
-
-      export default App
+export default App
