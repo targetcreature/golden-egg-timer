@@ -4,7 +4,7 @@ import lifecycle from "react-pure-lifecycle"
 
 const componentDidMount = () => {}
 
-const Timer = (props) => {
+const Menu = (props) => {
   let timeOpts = []
   for(let i=1; i<61; i++){
     timeOpts.push(
@@ -21,10 +21,6 @@ const Timer = (props) => {
   }
 
   return(
-    // <div className="base">
-    //   <div className="faceplate-wrap">
-    //     <div className="faceplate">Golden Egg Timer®</div>
-    //   </div>
       <div className="menu">
         <div className="settings">
           <select
@@ -60,4 +56,4 @@ const methods = {
   componentDidMount
 }
 
-export default lifecycle(methods)(Timer)
+export default lifecycle(methods)(Menu)

@@ -40,16 +40,8 @@ class App extends Component {
 
           mute={this.state.mute}
           toggleMute={this.toggleMute}
-        />
-        <div className="egg-stand-wrap">
-          <div className="egg-stand-bottom"/>
-          <div className="egg-stand-top">
-            <div className="egg-shadow"/>
-          </div>
-          <div className="egg-stand-title">
-          Golden Egg Timer</div>
-        </div>
-        <Menu
+
+          // menu
           person={this.state.person}
           peopleOnChange={this.peopleOnChange}
           running={this.state.running}
@@ -62,6 +54,14 @@ class App extends Component {
           stopTimer={this.stopTimer}
           reset={this.reset}
         />
+        <div className="egg-stand-wrap">
+          <div className="egg-stand-bottom"/>
+          <div className="egg-stand-top">
+            <div className="egg-shadow"/>
+          </div>
+          <div className="egg-stand-title">
+          Golden Egg Timer</div>
+        </div>
       </AppX>
     )
   }

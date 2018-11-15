@@ -4,13 +4,31 @@ import currency from "format-currency"
 import {
   EggX
 } from "../styles/EggX"
+import Menu from "./Menu"
 import { FaPlay, FaPause, FaUndoAlt, FaVolumeUp, FaVolumeMute } from "react-icons/fa"
 
 const componentDidMount = () => {}
 
 function Egg(props){
   return(
-    <EggX time={props.time} timeType={props.timeType} dial={props.dial}>
+    <EggX
+    time={props.time}
+    timeType={props.timeType}
+    dial={props.dial}
+    >
+    <Menu
+      peopleOnChange={props.peopleOnChange}
+      person={props.person}
+      running={props.running}
+      toggleTimer={props.toggleTimer}
+      timeOnChange={props.timeOnChange}
+      lastTime={props.lastTime}
+      timeType={props.timeType}
+      timeTypeOnChange={props.timeTypeOnChange}
+      startTimer={props.startTimer}
+      stopTimer={props.stopTimer}
+      reset={props.reset}
+    />
       <Money money={props.money} toggleMute={props.toggleMute} mute={props.mute}/>
       <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
       <Dial/>

@@ -15,9 +15,27 @@ const AppX = styled.div`
     width:calc(${height} * ${ratio});
     font-size:16px;
     background: darkkhaki;
+    margin-top:3vh;
 
+    .menu{
+      /* display: flex; */
+      /* flex-direction: row; */
+      /* justify-content: center; */
+      /* align-items: center; */
+    }
+    .settings{
+    }
+    select{
+      font-size: 16pxpx;
+      background: none;
+      border: none;
+      /* border-bottom: 5px solid; */
+      /* padding: 5px 0px; */
+      cursor: pointer;
+    }
     .personSelect{
-      border-color: green;
+      font-size:36px;
+      font-family:"Fancy";
     }
     .timeSelect{
       border-color: blue;
@@ -30,14 +48,6 @@ const AppX = styled.div`
       padding: 5px 10px;
     }
 
-    select{
-      font-size: 16px;
-      background: none;
-      border: none;
-      border-bottom: 5px solid;
-      padding: 5px 0px;
-      cursor: pointer;
-    }
 
     .egg-stand-wrap{
       position: relative;
@@ -96,12 +106,6 @@ const AppX = styled.div`
     .base{
       display: flex;
       flex-direction: column;
-    }
-    .menu{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
     .menu-face{
       border: 1px solid #FFF;
