@@ -17,6 +17,7 @@ class App extends Component {
       running:0,
     }
     this.state = {
+      mute:0,
       dial:16,
       time:15,
       lastTime:15,
@@ -28,11 +29,17 @@ class App extends Component {
     return (
       <AppX>
         <Egg
-          knobTwist={this.knobTwist}
           time={this.state.time}
           money={this.state.money}
           timeOnChange={this.timeOnChange}
           dial={this.state.dial}
+
+          toggleTimer={this.toggleTimer}
+          running={this.state.running}
+          reset={this.reset}
+
+          mute={this.state.mute}
+          toggleMute={this.toggleMute}
         />
         <div className="egg-stand-wrap">
           <div className="egg-stand-bottom"/>
@@ -131,6 +138,12 @@ class App extends Component {
   reset = () => {
     this.stopTimer()
     this.setState({...this.defaults, dial:this.state.lastTime+1, time:this.state.lastTime })
+  }
+
+  toggleMute = () => {
+    const newMute = !this.state.mute;
+    console.log(newMute)
+    this.setState({mute:newMute})
   }
 
 }

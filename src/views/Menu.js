@@ -1,7 +1,6 @@
 import React from "react"
 import people from "../data/people"
 import lifecycle from "react-pure-lifecycle"
-import { FaPlay, FaPause, FaUndoAlt } from "react-icons/fa"
 
 const componentDidMount = () => {}
 
@@ -27,7 +26,6 @@ const Timer = (props) => {
     //     <div className="faceplate">Golden Egg Timer®</div>
     //   </div>
       <div className="menu">
-        {/* <div className="menu-face"> */}
         <div className="settings">
           <select
             className="personSelect"
@@ -53,25 +51,9 @@ const Timer = (props) => {
             <option key={"sec"}>sec</option>
             <option key={"min"}>min</option>
           </select>
-          <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
         </div>
       </div>
-      // </div>
-    // </div>
       )
-}
-
-function Buttons(props){
-  const buttonSize = "2.5em"
-  const playButton = props.running ? <FaPause size={buttonSize}/> : <FaPlay size={buttonSize}/>
-  return(
-  <div className="buttons">
-    <div className="play icon" onClick={props.toggleTimer} running={props.running}>
-      {playButton}
-    </div>
-    <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
-  </div>
-  )
 }
 
 const methods = {

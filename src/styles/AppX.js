@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { rgba } from "polished"
 import media from "../utils/media"
 
 const ratio = 9/16
@@ -119,16 +120,6 @@ const AppX = styled.div`
       border-top-left-radius:100%;
       border-top-right-radius:100%;
       ${'' /* padding: 20px; */}
-    }
-    .buttons{
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-    }
-    .icon{
-      display: inline-block;
-      cursor: pointer;
-      margin: 0 20px;
     }
 
 `

@@ -4,13 +4,15 @@ import currency from "format-currency"
 import {
   EggX
 } from "../styles/EggX"
+import { FaPlay, FaPause, FaUndoAlt, FaVolumeUp, FaVolumeMute } from "react-icons/fa"
 
 const componentDidMount = () => {}
 
 function Egg(props){
   return(
     <EggX time={props.time} timeType={props.timeType} dial={props.dial}>
-      <Money money={props.money}/>
+      <Money money={props.money} toggleMute={props.toggleMute} mute={props.mute}/>
+      <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
       <Dial/>
     </EggX>
 
@@ -20,11 +22,13 @@ function Egg(props){
 function Money(props){
   let opts = { format: '%v' }
   const pay = currency(props.money,opts)
+  const mute = props.mute ? <FaVolumeMute/> : <FaVolumeUp/>
 
   return(
     <div className="money-container">
       <div className="dollar">$</div>
       <div className="money">{pay}</div>
+      <div className="volume" onClick={props.toggleMute}>{mute}</div>
     </div>
   )
 }
@@ -80,7 +84,20 @@ function Dial(props){
       </div>
     </div>
       )
-      }
+}
+
+function Buttons(props){
+  const buttonSize = "1.5em"
+  const playButton = props.running ?   <div className="pause icon" onClick={props.toggleTimer} running={props.running}><FaPause size={buttonSize}/></div> :   <div className="play icon" onClick={props.toggleTimer} running={props.running}><FaPlay size={buttonSize}/></div>
+  return(
+  <div className="buttons">
+
+    {playButton}
+    <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
+  </div>
+  )
+}
+
 
 const methods = {
   componentDidMount

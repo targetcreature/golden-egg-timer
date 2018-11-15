@@ -36,7 +36,7 @@ const EggX = styled.div`
   .money-container{
     z-index:1;
     align-self: center;
-    margin-top: 140px;
+    margin-top: 160px;
     border-radius: 5px;
     background: #222;
     box-shadow: inset 0px 0px 25px #111;
@@ -53,7 +53,14 @@ const EggX = styled.div`
     width:100px;
     text-align: center;
     }
+  .volume{
+    cursor: pointer;
+    display: inline-block;
+    svg{
+      color:silver;
+    }
   }
+}
 .dial-container{
   position: absolute;
   align-self: center;
@@ -82,6 +89,33 @@ const EggX = styled.div`
 }
 .rotate{
   transform: rotate(${props => props.dial*6.125}deg);
+}
+
+
+.buttons{
+  z-index: 1;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.icon{
+  display: inline-block;
+  cursor: pointer;
+  margin: 4px;
+  border-radius: 100%;
+  padding: 15px;
+  border: 2px solid silver;
+  ${'' /* box-shadow: inset 0px 0px 0px 3px #5e5e5e; */}
+  background-image:
+    ${'' /* linear-gradient(to top right, #fff 0%, rgb(167, 167, 167) 5%, rgb(167, 167, 167) 30%, rgb(108, 108, 108) 50%, rgb(167, 167, 167) 70%, rgb(167, 167, 167) 95%, #fff 0%); */}
+    linear-gradient(to top right, #8A6E2F 0%, #9f7928 10%, #FFFFAC 50%, #9f7928 90%, #8A6E2F 0%);
+}
+.play{
+  svg{
+    margin-left: 2px;
+    margin-right: -2px;
+  }
 }
 `
 export { EggX }
