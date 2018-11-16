@@ -97,9 +97,9 @@ function Dial(props){
       <div className="dial">
         <div className="rotate">
           <svg
-            viewBox="-87.75 -88.75 175 175"
-            width="175"
-            height="175"
+            viewBox="-88.75 -88.75 175 175"
+            width="275"
+            height="275"
           >
             <path
               id="eggtime"

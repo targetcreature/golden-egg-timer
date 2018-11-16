@@ -77,10 +77,20 @@ const EggX = styled.div`
   }
 
   .console{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     align-self: center;
-    text-align: center;
     z-index: 1;
-    margin-top: -95px;
+
+    border-radius: 100%;
+    border: 2px solid #7C6A41;
+    box-shadow: inset 0 0 3px 2px rgba(0,0,0,0.5);
+    padding: 25px 20px 20px;
+    width: 165px;
+    height: 165px;
+    transform: translate(0,-8px);
   }
 
   .time-container{
@@ -175,25 +185,25 @@ const EggX = styled.div`
   .dial-container{
     position: absolute;
     align-self: center;
-    top:41%;
+    top:35%;
     text-align: center;
-    transform: scale(1.5);
     .arrow{
       font-size: 14px;
     }
     .dial{
       border-radius: 100%;
-      background-image:
+      background:
       radial-gradient(ellipse farthest-corner at right top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-      radial-gradient(ellipse farthest-corner at left bottom, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
-      box-shadow: inset 0 0 3px #6e3e00, 0 0 5px ${rgba("#6e3e00",0.5)};
-      transform: rotate(-87deg);
+      radial-gradient(ellipse farthest-corner at right bottom, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+      box-shadow: 0px 0 3px 1px rgba(0,0,0,0.75), inset 1px 0px 1px 0px rgba(255, 255, 172,0.25), inset -1px 0px 1px 0px rgba(255, 255, 172,0.25);
+      transform: scale(0.95,0.95) translate(0,-20px) rotate(-87deg);
     }
     .rotate{
       transform: rotate(${props => props.dial*6.125}deg);
     }
   }
-
-
 `
+
+
+
 export { EggX }
