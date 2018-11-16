@@ -15,6 +15,7 @@ const EggX = styled.div`
   height:${eggHeight}px;
   width:${eggWidth}px;
   border-radius: 100%;
+  left:calc(((${height} * ${ratio}) - 365px)/2);
 
   position: relative;
   display: flex;
@@ -26,8 +27,7 @@ const EggX = styled.div`
 
   ${media.phone`
     left:calc((100vw - ${eggWidth}px)/2);
-    transform: scale(0.75);
-    margin-top:-60px;
+    transform: scale(1);
   `}
 
   .person-container{
@@ -39,7 +39,7 @@ const EggX = styled.div`
     .paper{
       position: absolute;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 20%, rgba(0,0,0,0) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 20%, transparent 100%),
         linear-gradient(45deg, yellow 0%, yellow 100%);
       width: 125px;
       height: 75px;
@@ -112,11 +112,17 @@ const EggX = styled.div`
   }
 
   .money-container{
-    ${'' /* margin-top: 160px; */}
     border-radius: 5px;
     background: #222;
     box-shadow: inset 0px 0px 25px #111;
     padding: 15px;
+
+    border:1px;
+    border-top-color:#7C6A41;
+    border-left-color:#7C6A41;
+    border-right-color:#D1B464;
+    border-bottom-color:#D1B464;
+    border-style: inset;
 
     margin-bottom: 12px;
 

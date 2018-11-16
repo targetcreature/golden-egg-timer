@@ -11,7 +11,8 @@ const eggWidth = 350;
 const AppX = styled.div`
     ${media.phone`
       width:100vw;
-      height:100vh;
+      height:92vh;
+      margin-top:8vh;
     `}
     height:${height};
     width:calc(${height} * ${ratio});
@@ -35,9 +36,8 @@ const AppX = styled.div`
       position: relative;
       ${media.phone`
         left:calc((100vw - ${eggWidth}px)/2);
-        transform: scale(0.75);
-        margin-top: -90px;
-        margin-bottom: 30px;
+        transform: scale(1);
+        margin-top: -28px;
         `}
       left:calc(((${height} * ${ratio}) - 365px)/2);
       height: 100px;
