@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import people from "./data/people"
-import Menu from "./views/Menu"
 import Egg from "./views/Egg"
 import {
   AppX
@@ -44,15 +43,11 @@ class App extends Component {
           // menu
           person={this.state.person}
           peopleOnChange={this.peopleOnChange}
-          running={this.state.running}
-          toggleTimer={this.toggleTimer}
-          timeOnChange={this.timeOnChange}
           lastTime={this.state.lastTime}
           timeType={this.state.timeType}
           timeTypeOnChange={this.timeTypeOnChange}
           startTimer={this.startTimer}
           stopTimer={this.stopTimer}
-          reset={this.reset}
         />
         <div className="egg-stand-wrap">
           <div className="egg-stand-bottom"/>

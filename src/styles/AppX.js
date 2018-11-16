@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { rgba } from "polished"
+// import { rgba } from "polished"
 import media from "../utils/media"
 
 const ratio = 9/16
@@ -17,26 +17,49 @@ const AppX = styled.div`
     background: darkkhaki;
     margin-top:3vh;
 
-    .menu{
-      /* display: flex; */
-      /* flex-direction: row; */
-      /* justify-content: center; */
-      /* align-items: center; */
-    }
-    .settings{
-    }
     select{
-      font-size: 16pxpx;
+      font-size: 16px;
       background: none;
       border: none;
-      /* border-bottom: 5px solid; */
-      /* padding: 5px 0px; */
       cursor: pointer;
+      option{
+        color: black;
+        font-size: initial;
+      }
     }
-    .personSelect{
-      font-size:36px;
-      font-family:"Fancy";
+
+    .menu{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    .personWrap{
+      position: relative;
+      height:36px;
+      width:200px;
+      text-align: center;
+      margin-bottom: 10px;
+
+      .display{
+        font-size:36px;
+        line-height: 48px;
+        font-family:"Fancy";
+      }
+
+      select{
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        appearance: none;
+        color: transparent;
+      }
+    }
+
+
     .timeSelect{
       border-color: blue;
     }
