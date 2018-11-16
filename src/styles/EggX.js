@@ -34,23 +34,44 @@ const EggX = styled.div`
     display: flex;
     justify-content: center;
     height:36px;
+    transform: rotate(-15deg) translate(-20px,-50px);
+
+    .paper{
+      position: absolute;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 20%, rgba(0,0,0,0) 100%),
+        linear-gradient(45deg, yellow 0%, yellow 100%);
+      width: 125px;
+      height: 75px;
+      box-shadow: 2px 10px 10px rgba(0,0,0,0.25);
+    }
 
     .personWrap{
       position: absolute;
       height:36px;
-      width:200px;
+      width:125px;
       text-align: center;
       margin-bottom: 0px;
 
       select{
         position: absolute;
         width: 100%;
-        height:36px;
-        top: 0;
+        height:75px;
+        top: 0px;
         left: 0;
         right: 0;
         bottom: 0;
         color: transparent;
+      }
+
+      .textWrap{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      .person{
+        width:100px;
+        margin-top: 10px;
       }
     }
   }
