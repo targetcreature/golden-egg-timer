@@ -6,6 +6,8 @@ const ratio = 9/16
 const desktop_height = 75
 const height = desktop_height + "vh"
 
+const eggWidth = 350;
+
 const AppX = styled.div`
     ${media.phone`
       width:100vw;
@@ -15,7 +17,7 @@ const AppX = styled.div`
     width:calc(${height} * ${ratio});
     font-size:16px;
     background: darkkhaki;
-    margin-top:3vh;
+    margin-top:8vh;
 
     select{
       font-size: 16px;
@@ -32,7 +34,7 @@ const AppX = styled.div`
     .egg-stand-wrap{
       position: relative;
       ${media.phone`
-        left:calc((100vw - 365px)/2);
+        left:calc((100vw - ${eggWidth}px)/2);
         transform: scale(0.75);
         margin-top: -90px;
         margin-bottom: 30px;

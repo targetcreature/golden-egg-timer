@@ -37,10 +37,10 @@ function Person(p){
   return (
     <div className="person-container">
       <div className="personWrap">
-        <div className="display">{props.person}</div>
         <select value={props.person} onChange={props.peopleOnChange}>
           {peopleOpts}
         </select>
+        <div className="display">{props.person}</div>
       </div>
     </div>
   )
