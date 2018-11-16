@@ -1,9 +1,35 @@
 @font-face {
-  font-family: "Fancy";
+  font-family: "Etching";
   src: url(../assets/SymphonieCAT.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Handwriting";
+  src: url(../assets/amyshandwriting.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Dial";
+  src: url(../assets/typewcond_bold.otf) format("opentype");
+}
+@font-face {
+  font-family: "Money";
+  src: url(../assets/LCDPHONE.ttf) format("truetype");
 }
 
 .egg-stand-title
 {
-  font-family: "Fancy";
+  font-family: "Etching";
+}
+.personWrap
+{
+  font-family: "Handwriting";
+  font-size:32px;
+}
+.time-option, text{
+  font-family: "Dial";
+  font-size: 10px;
+  text-shadow: 0.33px 0.33px rgb(190, 164, 85);
+}
+
+.money{
+  font-family: "Money";
 }

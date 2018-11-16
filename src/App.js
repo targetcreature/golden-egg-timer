@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import people from "./data/people"
 import Egg from "./views/Egg"
+import Stand from "./views/Stand"
 import {
   AppX
 } from "./styles/AppX"
@@ -49,14 +50,7 @@ class App extends Component {
           startTimer={this.startTimer}
           stopTimer={this.stopTimer}
         />
-        <div className="egg-stand-wrap">
-          <div className="egg-stand-bottom"/>
-          <div className="egg-stand-top">
-            <div className="egg-shadow"/>
-          </div>
-          <div className="egg-stand-title">
-          Golden Egg Timer</div>
-        </div>
+        <Stand/>
       </AppX>
     )
   }

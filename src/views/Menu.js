@@ -11,7 +11,6 @@ const Menu = (props) => {
     return(
         <div className="menu">
           <Person props={props}/>
-          <Time props={props}/>
         </div>
       )
 }
@@ -30,36 +29,6 @@ function Person(p){
       <div className="display">{props.person}</div>
       <select value={props.person} onChange={props.peopleOnChange}>
         {peopleOpts}
-      </select>
-    </div>
-  )
-}
-
-function Time(p){
-  const props = p.props
-  let timeOpts = []
-  for(let i=1; i<61; i++){
-    timeOpts.push(
-      <option key={i} value={i}>{i}</option>
-    )
-  }
-  return(
-    <div className="timeWrap">
-      <select
-        className="timeSelect"
-        value={props.lastTime}
-        onChange={props.timeOnChange}
-      >
-        {timeOpts}
-      </select>
-
-      <select
-        className="timeTypeSelect"
-        value={props.timeType}
-        onChange={props.timeTypeOnChange}
-      >
-        <option key={"sec"}>sec</option>
-        <option key={"min"}>min</option>
       </select>
     </div>
   )

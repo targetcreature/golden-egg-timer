@@ -22,55 +22,12 @@ const AppX = styled.div`
       background: none;
       border: none;
       cursor: pointer;
+      appearance: none;
       option{
         color: black;
         font-size: initial;
       }
     }
-
-    .menu{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .personWrap{
-      position: relative;
-      height:36px;
-      width:200px;
-      text-align: center;
-      margin-bottom: 10px;
-
-      .display{
-        font-size:36px;
-        line-height: 48px;
-        font-family:"Fancy";
-      }
-
-      select{
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        appearance: none;
-        color: transparent;
-      }
-    }
-
-
-    .timeSelect{
-      border-color: blue;
-    }
-    .timeTypeSelect{
-      border-color: indigo;
-    }
-
-    .timeSelect, .timeTypeSelect{
-      padding: 5px 10px;
-    }
-
 
     .egg-stand-wrap{
       position: relative;

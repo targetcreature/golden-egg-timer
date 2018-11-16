@@ -5,6 +5,7 @@ import {
   EggX
 } from "../styles/EggX"
 import Menu from "./Menu"
+import people from "../data/people"
 import { FaPlay, FaPause, FaUndoAlt, FaVolumeUp, FaVolumeMute } from "react-icons/fa"
 
 const componentDidMount = () => {}
@@ -12,29 +13,48 @@ const componentDidMount = () => {}
 function Egg(props){
   return(
     <EggX
-    time={props.time}
-    timeType={props.timeType}
-    dial={props.dial}
-    >
-    <Menu
-      peopleOnChange={props.peopleOnChange}
-      person={props.person}
-      running={props.running}
-      toggleTimer={props.toggleTimer}
-      timeOnChange={props.timeOnChange}
-      lastTime={props.lastTime}
+      time={props.time}
       timeType={props.timeType}
-      timeTypeOnChange={props.timeTypeOnChange}
-      startTimer={props.startTimer}
-      stopTimer={props.stopTimer}
-      reset={props.reset}
-    />
-      <Money money={props.money} toggleMute={props.toggleMute} mute={props.mute}/>
-      <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
+      dial={props.dial}
+    >
+      <Person props={props}/>
+      <Console props={props}/>
       <Dial/>
     </EggX>
 
         )
+}
+
+function Person(p){
+  const props = p.props
+  const list = Object.keys(people)
+  const peopleOpts = []
+  for(let i=0; i<list.length; i++){
+    peopleOpts.push(
+        <option key={list[i]} value={list[i]}>{list[i]}</option>
+    )
+  }
+  return (
+    <div className="person-container">
+      <div className="personWrap">
+        <div className="display">{props.person}</div>
+        <select value={props.person} onChange={props.peopleOnChange}>
+          {peopleOpts}
+        </select>
+      </div>
+    </div>
+  )
+}
+
+function Console(p){
+  const props = p.props
+  return(
+  <div className="console">
+    <Time props={props}/>
+    <Money money={props.money} toggleMute={props.toggleMute} mute={props.mute}/>
+    <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
+  </div>
+  )
 }
 
 function Money(props){
@@ -64,7 +84,6 @@ function Dial(props){
 
   return(
     <div className="dial-container">
-
       <div className="arrow">
         <svg height="10" width="10">
           <polygon points="0,0 5,10 10,0"/>
@@ -105,10 +124,10 @@ function Dial(props){
 }
 
 function Buttons(props){
-  const buttonSize = "1.5em"
+  const buttonSize = "1em"
   const playButton = props.running ?   <div className="pause icon" onClick={props.toggleTimer} running={props.running}><FaPause size={buttonSize}/></div> :   <div className="play icon" onClick={props.toggleTimer} running={props.running}><FaPlay size={buttonSize}/></div>
   return(
-  <div className="buttons">
+  <div className="button-container">
 
     {playButton}
     <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
@@ -116,6 +135,35 @@ function Buttons(props){
   )
 }
 
+function Time(p){
+  const props = p.props
+  let timeOpts = []
+  for(let i=1; i<61; i++){
+    timeOpts.push(
+      <option key={i} value={i}>{i}</option>
+    )
+  }
+  return(
+    <div className="time-container">
+      <select
+        className="time-option timeSelect"
+        value={props.lastTime}
+        onChange={props.timeOnChange}
+      >
+        {timeOpts}
+      </select>
+
+      <select
+        className="time-option timeTypeSelect"
+        value={props.timeType}
+        onChange={props.timeTypeOnChange}
+      >
+        <option key={"sec"}>sec</option>
+        <option key={"min"}>min</option>
+      </select>
+    </div>
+  )
+}
 
 const methods = {
   componentDidMount
