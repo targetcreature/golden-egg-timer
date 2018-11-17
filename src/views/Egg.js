@@ -12,8 +12,11 @@ import {
   FaUndoAlt,
   FaVolumeUp,
   FaVolumeMute as Mute,
-  FaPeopleCarry as Workers,
+  FaPeopleCarry as WorkersIcon,
+  FaSlidersH as SettingsIcon,
  } from "react-icons/fa"
+
+ import { triangle } from "../utils/shapes"
 
 import {
   // IoIosPeople as Workers,
@@ -93,8 +96,21 @@ function Money(props){
   const workers = currency(props.workers,opts)
   const mute = props.mute ? <Mute/> : <FaVolumeUp/>
 
+    return(
+    <div className="money-container">
+      <MoneyRow person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} details={props.details}/>
+      <MoneyRow person={props.person} source="workers" pay={workers} details={props.details}/>
+    </div>
+  )
+}
+
+function MoneyRow(props){
+  const arrow =
+  <div key={"arrow"} className="more-arrow">
+    {triangle(5)}
+  </div>
   const icons = getIcons()
-  const more = icons ? icons[0] : ""
+  const more = icons ? [icons[0],arrow] : ""
   const details = props.details ? "details" : "details hidden"
 
     function getIcons(){
@@ -110,15 +126,26 @@ function Money(props){
       }
     }
 
-    return(
-    <div className="money-container">
+    let icon, className
+
+    switch(props.source){
+      case "workers":
+        icon = <div className="worker-icon"><WorkersIcon/></div>
+        className = props.details ? "details" : "details hidden"
+        break
+      default:
+      case "rate":
+        const c = props.details ? "close" : ""
+        icon = <div className={`more ${c}`} onClick={props.moreOnClick}>{more}</div>
+        className = ""
+        break
+    }
+
+  return(
+    <div className={`money-row ${className}`}>
       <div className="dollar">$</div>
-      <div className="money rate">{pay}</div>
-      <div onClick={props.toggleDetails} className="more">{more}</div>
-      <div className={details}>
-        <Workers/>
-        <div className="money workers">{workers}</div>
-      </div>
+      <div className={`money ${props.source}`}>{props.pay}</div>
+      {icon}
     </div>
   )
 }
@@ -161,11 +188,9 @@ function Dial(props){
 
           </svg>
         </div>
-          </div>
-        <div className="arrow">
-        <svg height="10" width="10">
-          <polygon points="0,0 5,10 10,0"/>
-        </svg>
+      </div>
+      <div className="arrow">
+        {triangle(10)}
       </div>
     </div>
       )

@@ -137,7 +137,7 @@ const EggX = styled.div`
     border-radius: 5px;
     background: #222;
     box-shadow: inset 0px 0px 25px #111;
-    padding: 10px 8px 10px 10px;
+    padding: 10px 0 5px 10px;
 
     border:1px;
     border-top-color:#7C6A41;
@@ -148,16 +148,18 @@ const EggX = styled.div`
 
     margin-bottom: 10px;
 
+    .money-row{
+      display: grid;
+      grid-template-columns: 20px auto 30px;
+    }
+
     .dollar{
-      display: inline-block;
-      margin-right: 5px;
-      margin-left: 5px;
       color:silver;
     }
     .money{
-      display: inline-block;
-      width:90px;
-      text-align: center;
+      min-width:60px;
+      text-align: right;
+      padding-right: 10px;
     }
     .rate{
       color:lime;
@@ -170,22 +172,29 @@ const EggX = styled.div`
       display: inline-block;
     }
     .more{
-      float:right;
+      cursor: pointer;
+      .more-arrow{
+        display: inline-block;
+        transform: translate(1px,4px);
+      }
+      &.close .more-arrow{
+        transform-origin: center center;
+        transform: translate(1px,-10px) scale(1,-1);
+      }
     }
     svg{
-      color:silver;
-      width: 18px;
-      height: 18px;
-      float:right;
+      fill:silver;
+      width: 15px;
+      height: 15px;
     }
     .details{
-      height: 20px;
-      width: 100%;
       overflow:hidden;
       transition: height 0.1s;
       margin-top: 3px;
+      margin-bottom: 5px;
       &.hidden{
         height:0px;
+        margin-bottom: 0px;
       }
       .workers{
         margin-left: 20px;
