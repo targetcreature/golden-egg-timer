@@ -49,6 +49,7 @@ const EggX = styled.div`
       height:36px;
       text-align: center;
       margin-bottom: 0px;
+      color: seagreen;
 
       &.post-it{
         width:125px;
@@ -132,10 +133,11 @@ const EggX = styled.div`
   }
 
   .money-container{
+    position: relative;
     border-radius: 5px;
     background: #222;
     box-shadow: inset 0px 0px 25px #111;
-    padding: 15px;
+    padding: 10px 8px 10px 10px;
 
     border:1px;
     border-top-color:#7C6A41;
@@ -149,21 +151,47 @@ const EggX = styled.div`
     .dollar{
       display: inline-block;
       margin-right: 5px;
+      margin-left: 5px;
       color:silver;
     }
     .money{
       display: inline-block;
-      color:lime;
       width:90px;
       text-align: center;
+    }
+    .rate{
+      color:lime;
+    }
+    .workers{
+      color: deeppink;
     }
     .volume{
       cursor: pointer;
       display: inline-block;
-      svg{
-        color:silver;
-      }
     }
+    .more{
+      float:right;
+    }
+    svg{
+      color:silver;
+      width: 18px;
+      height: 18px;
+      float:right;
+    }
+    .details{
+      height: 20px;
+      width: 100%;
+      overflow:hidden;
+      transition: height 0.1s;
+      margin-top: 3px;
+      &.hidden{
+        height:0px;
+      }
+      .workers{
+        margin-left: 20px;
+      }
+
+      }
   }
 
   .button-container{

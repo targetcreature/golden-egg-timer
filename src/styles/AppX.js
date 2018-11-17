@@ -18,7 +18,6 @@ const AppX = styled.div`
     width:calc(${height} * ${ratio});
     font-size:16px;
     background: darkkhaki;
-    margin-top:8vh;
 
     select{
       font-size: 16px;
@@ -30,6 +29,37 @@ const AppX = styled.div`
         color: black;
         font-size: initial;
       }
+    }
+
+    .menu{
+      ${media.phone`
+        top: 0;
+        right: 10px;
+      `}
+      position: absolute;
+      width:75px;
+      height:75px;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .person-settings{
+        transform: scale(-1,1);
+      }
+      select{
+        position: absolute;
+        top:0;
+        left: 0;
+        width:75px;
+        height:75px;
+        color:transparent;
+      }
+  }
+
+    .main{
+      margin-top:8vh;
     }
 
     .egg-stand-wrap{

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import people from "./data/people"
 import Egg from "./views/Egg"
 import Stand from "./views/Stand"
+import Menu from "./views/Menu"
 import {
   AppX
 } from "./styles/AppX"
@@ -14,9 +15,11 @@ class App extends Component {
     this.defaults = {
       // timeType:"sec",
       money:0,
+      workers:0,
       running:0,
     }
     this.state = {
+      details:0,
       mute:0,
       dial:15,
       time:15,
@@ -29,33 +32,41 @@ class App extends Component {
   render() {
     return (
       <AppX>
-        <Egg
-          time={this.state.time}
-          money={this.state.money}
-          timeOnChange={this.timeOnChange}
-          dial={this.state.dial}
-          count={this.state.count}
+        <Menu person={this.state.person} peopleOnChange={this.peopleOnChange}/>
 
-          toggleTimer={this.toggleTimer}
-          running={this.state.running}
-          reset={this.reset}
+        <div className="main">
+          <Egg
+            time={this.state.time}
+            money={this.state.money}
+            timeOnChange={this.timeOnChange}
+            dial={this.state.dial}
+            count={this.state.count}
 
-          start={this.state.start}
+            toggleTimer={this.toggleTimer}
+            running={this.state.running}
+            reset={this.reset}
 
-          mute={this.state.mute}
-          toggleMute={this.toggleMute}
+            start={this.state.start}
 
-          // menu
-          person={this.state.person}
-          peopleOnChange={this.peopleOnChange}
-          lastTime={this.state.lastTime}
-          timeType={this.state.timeType}
-          timeTypeOnChange={this.timeTypeOnChange}
-          startTimer={this.startTimer}
-          stopTimer={this.stopTimer}
-          cat={this.state.category}
-        />
-        <Stand/>
+            mute={this.state.mute}
+            toggleMute={this.toggleMute}
+            details={this.state.details}
+            toggleDetails={this.toggleDetails}
+
+            workers={this.state.workers}
+
+            // menu
+            person={this.state.person}
+            peopleOnChange={this.peopleOnChange}
+            lastTime={this.state.lastTime}
+            timeType={this.state.timeType}
+            timeTypeOnChange={this.timeTypeOnChange}
+            startTimer={this.startTimer}
+            stopTimer={this.stopTimer}
+            cat={this.state.category}
+          />
+          <Stand/>
+        </div>
       </AppX>
     )
   }
@@ -79,8 +90,14 @@ class App extends Component {
   }
 
   moneyTick = () => {
+    const person = people[this.state.person]
     const seconds = 60 * 60 * 40 * 52
-    const rate = (people[this.state.person].rate * 1000000) / seconds
+    const rate = (person.rate * 1000000) / seconds
+
+    if(person.workers){
+      const wrate = person.workers / seconds
+      this.setState({workers:this.state.workers+wrate})
+    }
     this.setState({money:this.state.money+rate})
   }
 
@@ -90,8 +107,6 @@ class App extends Component {
   }
 
   startTimer = () => {
-    const speed = this.state.timeType === "sec" ? 169 :
-
     this.moneyTick()
     this.timeTick()
     this.setState({timer: setInterval(this.newTick,1000), running:1, start:Date.now()})
@@ -145,8 +160,13 @@ class App extends Component {
 
   toggleMute = () => {
     const newMute = !this.state.mute;
-    console.log(newMute)
     this.setState({mute:newMute})
+  }
+
+  toggleDetails = () => {
+    console.log("hello")
+    const n = !this.state.details
+    this.setState({details:n})
   }
 
 }

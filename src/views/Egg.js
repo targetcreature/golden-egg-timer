@@ -4,9 +4,20 @@ import currency from "format-currency"
 import {
   EggX
 } from "../styles/EggX"
-import Menu from "./Menu"
+// import Menu from "./Menu"
 import people from "../data/people"
-import { FaPlay, FaPause, FaUndoAlt, FaVolumeUp, FaVolumeMute } from "react-icons/fa"
+import {
+  FaPlay,
+  FaPause,
+  FaUndoAlt,
+  FaVolumeUp,
+  FaVolumeMute as Mute,
+  FaPeopleCarry as Workers,
+ } from "react-icons/fa"
+
+import {
+  // IoIosPeople as Workers,
+} from "react-icons/io"
 
 const componentDidMount = () => {}
 
@@ -70,7 +81,7 @@ function Console(p){
   return(
   <div className="console">
     <Time props={props}/>
-    <Money money={props.money} toggleMute={props.toggleMute} mute={props.mute}/>
+    <Money workers={props.workers} toggleDetails={props.toggleDetails} details={props.details} money={props.money} toggleMute={props.toggleMute} mute={props.mute} person={props.person}/>
     <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
   </div>
   )
@@ -79,13 +90,35 @@ function Console(p){
 function Money(props){
   let opts = { format: '%v' }
   const pay = currency(props.money,opts)
-  const mute = props.mute ? <FaVolumeMute/> : <FaVolumeUp/>
+  const workers = currency(props.workers,opts)
+  const mute = props.mute ? <Mute/> : <FaVolumeUp/>
 
-  return(
+  const icons = getIcons()
+  const more = icons ? icons[0] : ""
+  const details = props.details ? "details" : "details hidden"
+
+    function getIcons(){
+      const icons = []
+      const iconData = people[props.person].icons
+      const keys = Object.keys(iconData)
+      if(!keys) return <Mute/>
+      else{
+        for(let i = 0; i<keys.length; i++){
+          icons.push(<span key={i}>{iconData[keys[i]]}</span>)
+        }
+        return icons
+      }
+    }
+
+    return(
     <div className="money-container">
       <div className="dollar">$</div>
-      <div className="money">{pay}</div>
-      <div className="volume" onClick={props.toggleMute}>{mute}</div>
+      <div className="money rate">{pay}</div>
+      <div onClick={props.toggleDetails} className="more">{more}</div>
+      <div className={details}>
+        <Workers/>
+        <div className="money workers">{workers}</div>
+      </div>
     </div>
   )
 }
