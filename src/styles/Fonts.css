@@ -4,7 +4,12 @@
 }
 @font-face {
   font-family: "Handwriting";
-  src: url(../assets/amyshandwriting.ttf) format("truetype");
+  src: url(../assets/Kids-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Stamped";
+  src: url(../assets/TopSecret.ttf) format("truetype");
+  src: url(../assets/WARTORN.TTF) format("truetype");
 }
 @font-face {
   font-family: "Dial";
@@ -19,11 +24,17 @@
 {
   font-family: "Etching";
 }
-.personWrap
+.corporate{
+  font-family: "Stamped";
+  font-size:34px;
+  font-size:24px;
+}
+.post-it
 {
   font-family: "Handwriting";
   font-size:24px;
 }
+
 .time-option, text{
   font-family: "Dial";
   font-size: 10px;

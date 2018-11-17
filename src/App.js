@@ -18,10 +18,11 @@ class App extends Component {
     }
     this.state = {
       mute:0,
-      dial:16,
+      dial:15,
       time:15,
       lastTime:15,
-      person: Object.keys(people)[0]
+      person: Object.keys(people)[0],
+      category:"corporate"
     }
   }
 
@@ -33,10 +34,13 @@ class App extends Component {
           money={this.state.money}
           timeOnChange={this.timeOnChange}
           dial={this.state.dial}
+          count={this.state.count}
 
           toggleTimer={this.toggleTimer}
           running={this.state.running}
           reset={this.reset}
+
+          start={this.state.start}
 
           mute={this.state.mute}
           toggleMute={this.toggleMute}
@@ -49,6 +53,7 @@ class App extends Component {
           timeTypeOnChange={this.timeTypeOnChange}
           startTimer={this.startTimer}
           stopTimer={this.stopTimer}
+          cat={this.state.category}
         />
         <Stand/>
       </AppX>
@@ -56,7 +61,27 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({...this.defaults })
+    this.setState({...this.defaults, count: this.state.time*60 })
+  }
+
+  sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  newTick = async () => {
+    this.timeTick()
+    this.moneyTick()
+    if(this.state.time===0) this.stopTimer()
+  }
+
+  timeTick = () => {
+    this.setState({time:this.state.time-1})
+  }
+
+  moneyTick = () => {
+    const seconds = 60 * 60 * 40 * 52
+    const rate = (people[this.state.person].rate * 1000000) / seconds
+    this.setState({money:this.state.money+rate})
   }
 
   toggleTimer = () => {
@@ -64,8 +89,17 @@ class App extends Component {
     else this.startTimer()
   }
 
+  startTimer = () => {
+    const speed = this.state.timeType === "sec" ? 169 :
+
+    this.moneyTick()
+    this.timeTick()
+    this.setState({timer: setInterval(this.newTick,1000), running:1, start:Date.now()})
+  }
+
+
   timeOnChange = (event) => {
-    const time = this.state.timeType === "min" ? event.target.value * 60 : event.target.value
+    const time = this.state.timeType === "min" ? event.target.value * 3600 : event.target.value*60
     this.stopTimer()
     this.setState({
       time:time,
@@ -83,16 +117,6 @@ class App extends Component {
     this.setState({person:e.target.value})
   }
 
-  startTimer = () => {
-    this.moneyTick()
-    if(this.state.timeType === "min"){
-        this.setState({dial: this.state.dial-0.0167})
-    } else {
-      this.setState({dial: this.state.time})
-    }
-    this.timeTick()
-    this.setState({timer: setInterval(this.tick,1000), running:1})
-  }
 
   stopTimer = () => {
     clearInterval(this.state.timer)
@@ -102,18 +126,8 @@ class App extends Component {
   tick = () => {
     this.timeTick()
     this.moneyTick()
-    this.dialTick()
+    // this.dialTick()
     if(this.state.time===0) this.stopTimer()
-  }
-
-  timeTick = () => {
-    this.setState({time:this.state.time-1})
-  }
-
-  moneyTick = () => {
-    const seconds = 60 * 60 * 40 * 52
-    const rate = (people[this.state.person].rate * 1000000) / seconds
-    this.setState({money:this.state.money+rate})
   }
 
   dialTick = () => {

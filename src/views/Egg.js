@@ -19,7 +19,7 @@ function Egg(props){
     >
       <Person props={props}/>
       <Console props={props}/>
-      <Dial/>
+      <Dial time={props.time} start={props.start} running={props.running}/>
     </EggX>
 
         )
@@ -27,26 +27,42 @@ function Egg(props){
 
 function Person(p){
   const props = p.props
-  const list = Object.keys(people)
-  const peopleOpts = []
-  for(let i=0; i<list.length; i++){
-    peopleOpts.push(
-        <option key={list[i]} value={list[i]}>{list[i]}</option>
-    )
-  }
+
+  const peopleOpts = getPeople()
+  const person = getPerson()
+
   return (
     <div className="person-container">
-      <div className="paper"/>
-      <div className="personWrap">
+      <div className={props.cat + " paper"}/>
+      <div className={props.cat + " personWrap"}>
         <select value={props.person} onChange={props.peopleOnChange}>
           {peopleOpts}
         </select>
         <div className="textWrap">
-          <div className="person">{props.person}</div>
+          <div className={props.cat + " person"}>{person}</div>
         </div>
       </div>
     </div>
   )
+
+  function getPeople(){
+    const list = Object.keys(people)
+    const peopleOpts = []
+    for(let i=0; i<list.length; i++){
+      peopleOpts.push(
+          <option key={list[i]} value={list[i]}>{list[i]}</option>
+      )
+    }
+    return peopleOpts
+  }
+
+  function getPerson(){
+    // if(props.cat === "corporate"){
+    //   const split = props.person.split(" ")
+    //   return `[${split[0]}] [${split[1]}]`
+    // }
+    return props.person
+  }
 }
 
 function Console(p){
@@ -77,27 +93,16 @@ function Money(props){
 function Dial(props){
   // const area = Math.PI*149.95^2
   const area = Math.PI*150^2
-  let ticks = ""
-  for(let i=59, n=-1; i>n; i--){
-    let k = i%5 === 0 ? i : " ' "
-    if(k===0) k = "00"
-    if(k===5) k = "05"
-    ticks += k
-  }
+  const ticks = getTicks()
+  const rotating = props.running === 1 ? "rotating" : ""
 
   return(
     <div className="dial-container">
-      <div className="arrow">
-        <svg height="10" width="10">
-          <polygon points="0,0 5,10 10,0"/>
-        </svg>
-      </div>
-
 
       <div className="dial">
-        <div className="rotate">
+        <div className="rot-zero">
           <svg
-            viewBox="-88.75 -88.75 175 175"
+            viewBox="-87.75 -88.75 175 175"
             width="275"
             height="275"
           >
@@ -109,7 +114,9 @@ function Dial(props){
               transform="scale(-1,1)"
             />
 
-            <text className="ticks">
+            <text
+              className="ticks"
+            >
               <textPath
                 href="#eggtime"
                 xlinkHref="#eggtime"
@@ -121,9 +128,25 @@ function Dial(props){
 
           </svg>
         </div>
+          </div>
+        <div className="arrow">
+        <svg height="10" width="10">
+          <polygon points="0,0 5,10 10,0"/>
+        </svg>
       </div>
     </div>
       )
+
+  function getTicks(){
+    let ticks = ""
+    for(let i=59, n=-1; i>n; i--){
+      let k = i%5 === 0 ? i : " ' "
+      if(k===0) k = "00"
+      if(k===5) k = "05"
+      ticks += k
+    }
+    return ticks
+  }
 }
 
 function Buttons(props){

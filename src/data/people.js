@@ -27,5 +27,10 @@ module.exports = {
     "Howard Schultz":{
       company:"Starbucks",
       rate:41.5
-    }
+    },
+    "Mark Zuckerberg":{
+      company:"Facebook",
+      rate:41.5,
+      cat:"corporate"
+    },
 }

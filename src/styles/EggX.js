@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { rgba } from "polished"
 import media from "../utils/media"
 
@@ -8,8 +8,6 @@ const height = desktop_height + "vh"
 
 const eggWidth = 350;
 const eggHeight = 475;
-
-
 
 const EggX = styled.div`
   height:${eggHeight}px;
@@ -34,13 +32,13 @@ const EggX = styled.div`
     display: flex;
     justify-content: center;
     height:36px;
-    transform: rotate(-15deg) translate(-20px,-50px);
+    transform: rotate(-15deg) translate(-40px,-20px);
 
-    .paper{
+    .paper.post-it{
       position: absolute;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 20%, transparent 100%),
-        linear-gradient(45deg, yellow 0%, yellow 100%);
+      linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 20%, transparent 100%),
+      linear-gradient(45deg, yellow 0%, yellow 100%);
       width: 125px;
       height: 75px;
       box-shadow: 2px 10px 10px rgba(0,0,0,0.25);
@@ -49,9 +47,17 @@ const EggX = styled.div`
     .personWrap{
       position: absolute;
       height:36px;
-      width:125px;
       text-align: center;
       margin-bottom: 0px;
+
+      &.post-it{
+        width:125px;
+      }
+
+      &.corporate{
+        width:200px;
+        margin-top: 15px;
+      }
 
       select{
         position: absolute;
@@ -69,9 +75,12 @@ const EggX = styled.div`
         justify-content: center;
         width: 100%;
       }
-      .person{
+      .corporate{
+      }
+
+      .post-it{
         width:100px;
-        margin-top: 10px;
+        margin-top: 15px;
       }
     }
   }
@@ -88,8 +97,8 @@ const EggX = styled.div`
     border: 2px solid #7C6A41;
     box-shadow: inset 0 0 3px 2px rgba(0,0,0,0.5);
     padding: 25px 20px 20px;
-    width: 165px;
-    height: 165px;
+    width: 158px;
+    height: 158px;
     transform: translate(0,-8px);
   }
 
@@ -105,6 +114,7 @@ const EggX = styled.div`
     box-shadow: inset 1px 1px 3px 0px black;
 
     margin-bottom: 15px;
+    margin-top: 5px;
 
     select{
       padding: 2px 5px;
@@ -134,7 +144,7 @@ const EggX = styled.div`
     border-bottom-color:#D1B464;
     border-style: inset;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
     .dollar{
       display: inline-block;
@@ -144,7 +154,7 @@ const EggX = styled.div`
     .money{
       display: inline-block;
       color:lime;
-      width:100px;
+      width:90px;
       text-align: center;
     }
     .volume{
@@ -172,12 +182,12 @@ const EggX = styled.div`
     }
     .play{
       svg{
-        margin:1px -1px -1px 1px;
+        margin:1.5px -3.5px -1.5px 3.5px;
       }
     }
     .reset{
       svg{
-        margin:1.25px 0px -1.25px 0px;
+        margin:1.5px 2px -1.5px 2px;
       }
     }
   }
@@ -187,8 +197,13 @@ const EggX = styled.div`
     align-self: center;
     top:35%;
     text-align: center;
+    transform: translate(0,0px);
+
     .arrow{
+      top: 0;left: 0;
+      z-index: 3;
       font-size: 14px;
+      transform:translate(0,-239px) rotate(180deg);
     }
     .dial{
       border-radius: 100%;
@@ -196,13 +211,16 @@ const EggX = styled.div`
       radial-gradient(ellipse farthest-corner at right top, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
       radial-gradient(ellipse farthest-corner at right bottom, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
       box-shadow: 0px 0 3px 1px rgba(0,0,0,0.75), inset 1px 0px 1px 0px rgba(255, 255, 172,0.25), inset -1px 0px 1px 0px rgba(255, 255, 172,0.25);
-      transform: scale(0.95,0.95) translate(0,-20px) rotate(-87deg);
+      transform: scale(0.925,0.95) rotate(-87deg);
     }
-    .rotate{
-      transform: rotate(${props => props.dial*6.125}deg);
+    .rot-zero{
+      transform: rotate(${props => props.time*6.125}deg);
     }
   }
 `
+
+// Here we create a component that will rotate everything we pass in over two seconds
+
 
 
 
