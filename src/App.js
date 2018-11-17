@@ -129,7 +129,7 @@ class App extends Component {
   }
 
   peopleOnChange = (e) => {
-    this.setState({person:e.target.value})
+    this.setState({person:e.target.value, details:0})
   }
 
 
