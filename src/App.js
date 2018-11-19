@@ -23,9 +23,9 @@ class App extends Component {
       timeType: "sec",
       details:0,
       mute:0,
-      time:5,
+      time:15,
       running:0,
-      lastTime:5,
+      lastTime:15,
       person: Object.keys(people)[0],
       category:"corporate"
     }

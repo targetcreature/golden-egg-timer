@@ -34,18 +34,18 @@ const AppX = styled.div`
     .menu{
       z-index: 999;
       ${media.phone`
-        top: 0;
-        right: 10px;
+        top: 10px;
+        right: 0px;
       `}
       position: absolute;
       width:75px;
-      ${'' /* height:75px; */}
+      height:75px;
       top: 20px;
       right: 20px;
-      display: flex;
+      ${'' /* display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: center; */}
 
       .person-settings{
         transform: scale(-1,1);
