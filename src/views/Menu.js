@@ -13,7 +13,7 @@ function Menu(props){
     <div className="menu">
       <People props={props}/>
       <Volume props={props}/>
-      <Info props={props}/>
+      {/* <Info props={props}/> */}
     </div>
       )
 }

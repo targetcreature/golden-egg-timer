@@ -10,6 +10,7 @@
   font-family: "Stamped";
   src: url(../assets/TopSecret.ttf) format("truetype");
   src: url(../assets/WARTORN.TTF) format("truetype");
+  src: url(../assets/PAINP___.TTF) format("truetype");
 }
 @font-face {
   font-family: "Dial";
@@ -28,6 +29,7 @@
   font-family: "Stamped";
   font-size:34px;
   font-size:24px;
+  font-size:50px;
 }
 .post-it
 {

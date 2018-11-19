@@ -32,6 +32,7 @@ const AppX = styled.div`
     }
 
     .menu{
+      z-index: 999;
       ${media.phone`
         top: 0;
         right: 10px;
@@ -62,7 +63,7 @@ const AppX = styled.div`
       .info
       {
         cursor: pointer;
-        margin-top: 20px;
+        margin-top: 15px;
         svg{
           width: 28px;
           height: 28px;
