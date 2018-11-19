@@ -22,7 +22,7 @@ icons.pol.rep = <FaPause/>
 const list = {
     "Jeff Bezos":{
       company: "Amazon",
-      rate: 23826.816,
+      rate: 23826816000,
       workers: 28000,
       icons:{
         brand: <FaAmazon/>,
@@ -54,7 +54,7 @@ const list = {
     },
     "Howard Schultz":{
       company:"Starbucks",
-      rate:41.5,
+      rate:41500000,
       icons:{
       }
     },

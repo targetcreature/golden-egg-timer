@@ -126,15 +126,17 @@ function MoneyRow(props){
       }
     }
 
-    let icon, className
+    let dollar, icon, className
 
     switch(props.source){
       case "workers":
+        dollar = ""
         icon = <div className="worker-icon"><WorkersIcon/></div>
         className = props.details ? "details" : "details hidden"
         break
       default:
       case "rate":
+        dollar = "$"
         const c = props.details ? "close" : ""
         icon = <div className={`more ${c}`} onClick={props.moreOnClick}>{more}</div>
         className = ""
@@ -143,7 +145,7 @@ function MoneyRow(props){
 
   return(
     <div className={`money-row ${className}`}>
-      <div className="dollar">$</div>
+      <div className="dollar">{dollar}</div>
       <div className={`money ${props.source}`}>{props.pay}</div>
       {icon}
     </div>

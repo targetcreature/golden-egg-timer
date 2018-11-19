@@ -181,6 +181,7 @@ const EggX = styled.div`
         transform-origin: center center;
         transform: translate(1px,-10px) scale(1,-1);
       }
+      transform:translate(0,1px)
     }
     svg{
       fill:silver;
@@ -198,6 +199,9 @@ const EggX = styled.div`
       }
       .workers{
         margin-left: 20px;
+      }
+      .worker-icon{
+        transform:translate(1px,0);
       }
 
       }
@@ -220,6 +224,11 @@ const EggX = styled.div`
     .play{
       svg{
         margin:1.5px -3.5px -1.5px 3.5px;
+      }
+    }
+    .pause{
+      svg{
+        margin:1.5px -1.5px -1.5px 1.5px;
       }
     }
     .reset{
@@ -251,7 +260,8 @@ const EggX = styled.div`
       transform: scale(0.925,0.95) rotate(-87deg);
     }
     .rot-zero{
-      transform: rotate(${props => props.time*6.125}deg);
+      ${'' /* transform: rotate(${props => props.time*6.125}deg); */}
+      transform: rotate(${props => props.dial}deg);
     }
   }
 `

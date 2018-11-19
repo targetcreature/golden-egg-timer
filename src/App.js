@@ -7,22 +7,23 @@ import {
   AppX
 } from "./styles/AppX"
 import "./styles/Fonts.css"
+import sf from "./modules/StateFunctions"
 // import logo from './logo.svg'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.defaults = {
-      // timeType:"sec",
       money:0,
       workers:0,
       running:0,
     }
     this.state = {
-      details:0,
+      timeType: "sec",
+      details:1,
       mute:0,
-      dial:15,
       time:15,
+      dial:15,
       lastTime:15,
       person: Object.keys(people)[0],
       category:"corporate"
@@ -72,66 +73,20 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({...this.defaults, count: this.state.time*60 })
-  }
-
-  sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  newTick = async () => {
-    this.timeTick()
-    this.moneyTick()
-    if(this.state.time===0) this.stopTimer()
-  }
-
-  timeTick = () => {
-    this.setState({time:this.state.time-1})
-  }
-
-  moneyTick = () => {
-    const person = people[this.state.person]
-    const seconds = 60 * 60 * 40 * 52
-    const rate = (person.rate * 1000000) / seconds
-
-    if(person.workers){
-      const wrate = person.workers / seconds
-      this.setState({workers:this.state.workers+wrate})
-    }
-    this.setState({money:this.state.money+rate})
+    this.setState({...this.defaults})
+    this.setState(sf.timer.set.dial)
   }
 
   toggleTimer = () => {
-    if(this.state.running) this.stopTimer()
-    else this.startTimer()
+    console.log(this.state.timeType)
+    this.state.running ? this.stopTimer() : this.startTimer()
   }
 
   startTimer = () => {
-    this.moneyTick()
-    this.timeTick()
-    this.setState({timer: setInterval(this.newTick,1000), running:1, start:Date.now()})
+    console.log(this.state.time)
+    this.tick()
+    this.setState({timer: setInterval(this.tick,1000), running:1})
   }
-
-
-  timeOnChange = (event) => {
-    const time = this.state.timeType === "min" ? event.target.value * 3600 : event.target.value*60
-    this.stopTimer()
-    this.setState({
-      time:time,
-      lastTime:event.target.value,
-      dial:event.target.value
-    })
-  }
-
-  timeTypeOnChange = (event) => {
-    this.stopTimer()
-    this.setState({timeType:event.target.value, dial:this.state.lastTime})
-  }
-
-  peopleOnChange = (e) => {
-    this.setState({person:e.target.value, details:0})
-  }
-
 
   stopTimer = () => {
     clearInterval(this.state.timer)
@@ -139,23 +94,53 @@ class App extends Component {
   }
 
   tick = () => {
+    if(this.state.time===0){
+      this.stopTimer()
+      return
+    }
     this.timeTick()
     this.moneyTick()
-    // this.dialTick()
-    if(this.state.time===0) this.stopTimer()
+    this.dialTick()
   }
 
-  dialTick = () => {
-    if(this.state.timeType === "min"){
-        this.setState({dial: this.state.dial-0.0167})
-    } else {
-      this.setState({dial: this.state.time+1})
-    }
+  timeTick = () => this.setState(sf.timer.tick.time)
+  moneyTick = () => this.setState(sf.timer.tick.money)
+  dialTick = () => this.setState(sf.timer.tick.dial)
+
+  timeOnChange = (event) => {
+    const time = event.target.value
+    this.stopTimer()
+    this.setState(sf.timer.set.time(this.state,time))
+    this.setState(sf.timer.set.dial)
+    this.setState(sf.timer.set.money)
+  }
+
+  getTime = (val) => {
+    return val === "min"
+      ? this.state.lastTime * 60
+      : this.state.lastTime
+  }
+
+  timeTypeOnChange = (event) => {
+    const val = event.target.value
+    const time = this.getTime(val)
+    this.stopTimer()
+    this.setState(sf.timer.set.timeType(this.state,val))
+    this.setState({time:time})
+    this.setState(sf.timer.set.dial)
+    this.setState(sf.timer.set.money)
+  }
+
+  peopleOnChange = (e) => {
+    this.setState({person:e.target.value, details:0})
   }
 
   reset = () => {
     this.stopTimer()
-    this.setState({...this.defaults, dial:this.state.lastTime+1, time:this.state.lastTime })
+    this.setState({...this.defaults})
+    this.setState(sf.timer.set.time(this.state,this.state.lastTime))
+    this.setState(sf.timer.set.dial)
+    this.setState(sf.timer.set.money)
   }
 
   toggleMute = () => {
