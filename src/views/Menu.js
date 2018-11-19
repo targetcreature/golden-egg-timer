@@ -1,15 +1,48 @@
 import React from "react"
-// import { FaHandHolding as PersonToggle } from "react-icons/fa"
-import { MdFingerprint as PersonToggle } from "react-icons/md"
+import {
+  FaVolumeUp as VolIcon,
+  FaVolumeMute as MuteIcon,
+  FaQuestionCircle as InfoIcon,
+ } from "react-icons/fa"
+import { MdFingerprint as PersonIcon } from "react-icons/md"
 
 import people from "../data/people"
 
 function Menu(props){
+  return(
+    <div className="menu">
+      <People props={props}/>
+      <Volume props={props}/>
+      <Info props={props}/>
+    </div>
+      )
+}
+
+function Info(props){
+  return(
+    <div className="info" onClick={props.infoClick}>
+      <InfoIcon/>
+    </div>
+  )
+}
+
+function Volume(p){
+  const props = p.props
+  const icon = props.mute ? <MuteIcon/> : <VolIcon/>
+  return(
+    <div className="mute" onClick={props.toggleMute}>
+      {icon}
+    </div>
+  )
+}
+
+function People(p){
+  const props = p.props
   const peopleOpts = getPeople()
 
   return(
-    <div className="menu">
-      <PersonToggle className="person-settings"
+    <>
+      <PersonIcon className="person-settings"
         onClick={props.onClick}
         size="50px"
         fill="seagreen"
@@ -17,20 +50,21 @@ function Menu(props){
       <select value={props.person} onChange={props.peopleOnChange}>
         {peopleOpts}
       </select>
-    </div>
+    </>
+  )
+  function getPeople(){
+    const list = Object.keys(people)
+    const peopleOpts = []
+    for(let i=0; i<list.length; i++){
+      peopleOpts.push(
+        <option key={list[i]} value={list[i]}>{list[i]}</option>
       )
-      function getPeople(){
-        const list = Object.keys(people)
-        const peopleOpts = []
-        for(let i=0; i<list.length; i++){
-          peopleOpts.push(
-            <option key={list[i]} value={list[i]}>{list[i]}</option>
-          )
-        }
-        return peopleOpts
-      }
+    }
+    return peopleOpts
+  }
+
 }
 
 
 
-export default Menu
+      export default Menu

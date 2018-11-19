@@ -10,8 +10,6 @@ import {
   FaPlay,
   FaPause,
   FaUndoAlt,
-  FaVolumeUp,
-  FaVolumeMute as Mute,
   FaPeopleCarry as WorkersIcon,
   FaSlidersH as SettingsIcon,
  } from "react-icons/fa"
@@ -94,7 +92,6 @@ function Money(props){
   let opts = { format: '%v' }
   const pay = currency(props.money,opts)
   const workers = currency(props.workers,opts)
-  const mute = props.mute ? <Mute/> : <FaVolumeUp/>
 
     return(
     <div className="money-container">
@@ -117,7 +114,7 @@ function MoneyRow(props){
       const icons = []
       const iconData = people[props.person].icons
       const keys = Object.keys(iconData)
-      if(!keys) return <Mute/>
+      if(!keys) return
       else{
         for(let i = 0; i<keys.length; i++){
           icons.push(<span key={i}>{iconData[keys[i]]}</span>)

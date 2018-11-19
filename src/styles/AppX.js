@@ -1,5 +1,5 @@
 import styled from "styled-components"
-// import { rgba } from "polished"
+import { rgba } from "polished"
 import media from "../utils/media"
 
 const ratio = 9/16
@@ -38,10 +38,11 @@ const AppX = styled.div`
       `}
       position: absolute;
       width:75px;
-      height:75px;
+      ${'' /* height:75px; */}
       top: 20px;
       right: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
@@ -55,6 +56,18 @@ const AppX = styled.div`
         width:75px;
         height:75px;
         color:transparent;
+      }
+
+      .mute,
+      .info
+      {
+        cursor: pointer;
+        margin-top: 20px;
+        svg{
+          width: 28px;
+          height: 28px;
+          color: ${rgba("seagreen",1)};
+        }
       }
   }
 

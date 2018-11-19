@@ -5,7 +5,6 @@ let timer = {}
 
 timer.set = {
   time: (s,last) => {
-    console.log(s.timeType)
     const time = s.timeType === "min"
       ? last * 60
       : last
@@ -17,7 +16,7 @@ timer.set = {
     timeType: val
   }},
   dial: (s,p) => { return {
-    dial:s.lastTime*6.1
+    dial:s.lastTime*6.125
   }},
   money: () => { return {
     money:0
@@ -38,12 +37,13 @@ timer.tick = {
       workers: s.workers + wrate
     }},
   dial: (s) => {
-    const inc = s.timeType === "sec" ? 6.1 : 0.0167
+    const sec = 6
+    const min = sec / 60
+    const inc = s.timeType === "sec" ? sec : min
+    const dial = s.time === 0 ? 3 : s.dial - inc
     return{
-      dial:s.dial - inc
+      dial:dial
   }},
-
-
 }
 
 const sf = {

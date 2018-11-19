@@ -8,6 +8,7 @@ import {
 } from "./styles/AppX"
 import "./styles/Fonts.css"
 import sf from "./modules/StateFunctions"
+import TickSound from "./assets/tick.wav"
 // import logo from './logo.svg'
 
 class App extends Component {
@@ -20,11 +21,11 @@ class App extends Component {
     }
     this.state = {
       timeType: "sec",
-      details:1,
+      details:0,
       mute:0,
-      time:15,
-      dial:15,
-      lastTime:15,
+      time:5,
+      // dial:1,
+      lastTime:5,
       person: Object.keys(people)[0],
       category:"corporate"
     }
@@ -33,7 +34,13 @@ class App extends Component {
   render() {
     return (
       <AppX>
-        <Menu person={this.state.person} peopleOnChange={this.peopleOnChange}/>
+        <Menu
+          person={this.state.person}
+          peopleOnChange={this.peopleOnChange}
+          toggleMute={this.toggleMute}
+          mute={this.state.mute}
+
+        />
 
         <div className="main">
           <Egg
@@ -75,6 +82,9 @@ class App extends Component {
   componentDidMount = () => {
     this.setState({...this.defaults})
     this.setState(sf.timer.set.dial)
+
+    const tickwav = new Audio(TickSound)
+    this.setState({wav:tickwav})
   }
 
   toggleTimer = () => {
@@ -101,11 +111,18 @@ class App extends Component {
     this.timeTick()
     this.moneyTick()
     this.dialTick()
+    this.soundTick()
   }
 
   timeTick = () => this.setState(sf.timer.tick.time)
   moneyTick = () => this.setState(sf.timer.tick.money)
   dialTick = () => this.setState(sf.timer.tick.dial)
+  soundTick = () => {
+    if(!this.state.mute){
+      this.state.wav.play()
+    }
+  }
+
 
   timeOnChange = (event) => {
     const time = event.target.value
@@ -145,6 +162,7 @@ class App extends Component {
 
   toggleMute = () => {
     const newMute = !this.state.mute;
+    console.log(newMute)
     this.setState({mute:newMute})
   }
 
