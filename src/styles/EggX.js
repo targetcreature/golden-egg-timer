@@ -9,6 +9,9 @@ const height = desktop_height + "vh"
 const eggWidth = 350;
 const eggHeight = 475;
 
+const buttonSize = 45;
+const muteButton = 20;
+
 const EggX = styled.div`
   height:${eggHeight}px;
   width:${eggWidth}px;
@@ -49,15 +52,17 @@ const EggX = styled.div`
       height:36px;
       text-align: center;
       margin-bottom: 0px;
-      color: seagreen;
+      color: firebrick;
+      transform: translate(-10px,0);
 
       &.post-it{
         width:125px;
       }
 
       &.corporate{
-        width:200px;
+        width:100px;
         margin-top: 15px;
+        line-height: 42px;
       }
 
       select{
@@ -208,33 +213,51 @@ const EggX = styled.div`
   }
 
   .button-container{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     .icon{
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 100%;
-      margin: 0 4px;
-      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
-      border: 1.5px solid #5e502e;
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+
+      width: ${buttonSize}px;
+      height: ${buttonSize}px;
+      border-radius: 100%;
+      border: 3px solid #6b5b36;
+
+      box-shadow:
+        0px 0 5px 1px rgba(0,0,0,0.75),
+        inset 1px 0px 1px 0px rgba(255, 255, 172,0.25),
+        inset -1px 0px 1px 0px rgba(255, 255, 172,0.25),
+        inset 0px 0px 3px 1px ${props => props.time > 0 ? "lime" : "orangered"};
+
       background-image:
       linear-gradient(to top right, #8A6E2F 0%, #9f7928 10%, #FFFFAC 50%, #9f7928 90%, #8A6E2F 0%);
-    }
-    .play{
-      svg{
-        margin:1.5px -3.5px -1.5px 3.5px;
       }
     }
-    .pause{
-      svg{
-        margin:1.5px -1.5px -1.5px 1.5px;
-      }
-    }
-    .reset{
-      svg{
-        margin:1.5px 2px -1.5px 2px;
-      }
+    .play svg{ margin:0 -1px 0 1px; }
+    .pause svg{ margin:0 1px 0 -1px; }
+
+    .settings{
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: ${muteButton}px;
+      height: ${muteButton}px;
+      border-radius: 100%;
+      border: 1px solid #5e502e;
+
+      margin: -3px 6px 0px;
+
+      box-shadow:
+        0px 0 1px 1px rgba(0,0,0,0.1),
+        inset 1px 0px 1px 0px rgba(255, 255, 172,0.25),
+        inset -1px 0px 1px 0px rgba(255, 255, 172,0.25);
+
+      background-image:
+      linear-gradient(to top right, #8A6E2F 0%, #9f7928 10%, #FFFFAC 50%, #9f7928 90%, #8A6E2F 0%);
     }
   }
 

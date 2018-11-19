@@ -10,8 +10,11 @@ import {
   FaPlay,
   FaPause,
   FaUndoAlt,
+  FaVolumeUp as VolIcon,
+  FaVolumeMute as MuteIcon,
   FaPeopleCarry as WorkersIcon,
   FaSlidersH as SettingsIcon,
+  FaQuestion as InfoIcon,
  } from "react-icons/fa"
 
  import { triangle } from "../utils/shapes"
@@ -83,7 +86,7 @@ function Console(p){
   <div className="console">
     <Time props={props}/>
     <Money workers={props.workers} toggleDetails={props.toggleDetails} details={props.details} money={props.money} toggleMute={props.toggleMute} mute={props.mute} person={props.person}/>
-    <Buttons toggleTimer={props.toggleTimer} running={props.running} reset={props.reset}/>
+    <Buttons time={props.time} toggleTimer={props.toggleTimer} running={props.running} reset={props.reset} toggleMute={props.toggleMute} mute={props.mute}/>
   </div>
   )
 }
@@ -207,15 +210,49 @@ function Dial(props){
 }
 
 function Buttons(props){
-  const buttonSize = "1em"
-  const playButton = props.running ?   <div className="pause icon" onClick={props.toggleTimer} running={props.running}><FaPause size={buttonSize}/></div> :   <div className="play icon" onClick={props.toggleTimer} running={props.running}><FaPlay size={buttonSize}/></div>
+
+  const infoButton = getInfo()
+  const playButton = getPlay()
+  const muteButton = getMute()
+
   return(
   <div className="button-container">
-
+    <div className="empty"/>
     {playButton}
-    <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
+    {muteButton}
   </div>
   )
+
+  function getInfo(){
+    const info = <InfoIcon size="8px"/>
+      return(
+      <div className="info settings" onClick={props.toggleInfo}>
+        {info}
+      </div>
+      )
+      }
+
+  function getPlay(){
+    const buttonSize = "1em"
+    let playButton = props.running
+    ? <div className="pause icon" onClick={props.toggleTimer} running={props.running}><FaPause size={buttonSize}/></div>
+    : <div className="play icon" onClick={props.toggleTimer} running={props.running}><FaPlay size={buttonSize}/></div>
+    if(props.time===0) playButton = <div className="reset icon" onClick={props.reset}><FaUndoAlt size={buttonSize}/></div>
+    return playButton
+  }
+
+  function getMute(){
+    const size = 10;
+    let icon = props.mute === true
+    ? <MuteIcon size={`${size}px`}/>
+    : <VolIcon size={`${size}px`}/>
+
+    return(
+      <div className="mute settings" onClick={props.toggleMute}>
+        {icon}
+      </div>
+    )
+  }
 }
 
 function Time(p){

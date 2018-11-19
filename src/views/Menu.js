@@ -2,7 +2,6 @@ import React from "react"
 import {
   FaVolumeUp as VolIcon,
   FaVolumeMute as MuteIcon,
-  FaQuestionCircle as InfoIcon,
  } from "react-icons/fa"
 import { MdFingerprint as PersonIcon } from "react-icons/md"
 
@@ -12,29 +11,10 @@ function Menu(props){
   return(
     <div className="menu">
       <People props={props}/>
-      <Volume props={props}/>
-      {/* <Info props={props}/> */}
     </div>
       )
 }
 
-function Info(props){
-  return(
-    <div className="info" onClick={props.infoClick}>
-      <InfoIcon/>
-    </div>
-  )
-}
-
-function Volume(p){
-  const props = p.props
-  const icon = props.mute ? <MuteIcon/> : <VolIcon/>
-  return(
-    <div className="mute" onClick={props.toggleMute}>
-      {icon}
-    </div>
-  )
-}
 
 function People(p){
   const props = p.props
@@ -45,7 +25,7 @@ function People(p){
       <PersonIcon className="person-settings"
         onClick={props.onClick}
         size="50px"
-        fill="seagreen"
+        fill="firebrick"
       />
       <select value={props.person} onChange={props.peopleOnChange}>
         {peopleOpts}

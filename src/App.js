@@ -24,7 +24,7 @@ class App extends Component {
       details:0,
       mute:0,
       time:5,
-      // dial:1,
+      running:0,
       lastTime:5,
       person: Object.keys(people)[0],
       category:"corporate"
@@ -88,8 +88,12 @@ class App extends Component {
   }
 
   toggleTimer = () => {
-    console.log(this.state.timeType)
-    this.state.running ? this.stopTimer() : this.startTimer()
+    if(this.state.time !== 0){
+      this.state.running ? this.stopTimer() : this.startTimer()
+      return
+    }
+    this.reset()
+    this.startTimer()
   }
 
   startTimer = () => {
