@@ -25,7 +25,7 @@ function People(p){
       <PersonIcon className="person-settings"
         onClick={props.onClick}
         size="50px"
-        fill="firebrick"
+        fill="seagreen"
       />
       <select value={props.person} onChange={props.peopleOnChange}>
         {peopleOpts}

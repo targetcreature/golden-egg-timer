@@ -52,7 +52,7 @@ const EggX = styled.div`
       height:36px;
       text-align: center;
       margin-bottom: 0px;
-      color: firebrick;
+      color: seagreen;
       transform: translate(-10px,0);
 
       &.post-it{
