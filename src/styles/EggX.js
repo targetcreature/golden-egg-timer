@@ -10,7 +10,7 @@ const eggWidth = 350;
 const eggHeight = 475;
 
 const buttonSize = 45;
-const muteButton = 20;
+const muteButton = 24;
 
 const EggX = styled.div`
   height:${eggHeight}px;

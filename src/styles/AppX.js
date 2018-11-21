@@ -18,6 +18,7 @@ const AppX = styled.div`
     width:calc(${height} * ${ratio});
     font-size:16px;
     background: darkkhaki;
+    margin-top:-40px;
 
     select{
       font-size: 16px;
@@ -34,14 +35,15 @@ const AppX = styled.div`
     .menu{
       z-index: 999;
       ${media.phone`
+        position: absolute;
         top: 10px;
         right: 0px;
       `}
-      position: absolute;
+      position: relative;
       width:75px;
       height:75px;
-      top: 20px;
-      right: 20px;
+      top: 70px;
+      right: -240px;
       ${'' /* display: flex;
       flex-direction: column;
       justify-content: center;

@@ -249,7 +249,7 @@ function Buttons(props){
   }
 
   function getMute(){
-    const size = 10;
+    const size = 12;
     let icon = props.mute === true
     ? <MuteIcon size={`${size}px`}/>
     : <VolIcon size={`${size}px`}/>
