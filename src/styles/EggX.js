@@ -153,13 +153,19 @@ const EggX = styled.div`
 
     margin-bottom: 10px;
 
+    transition: width 0.5s;
+
     .money-row{
       display: grid;
-      grid-template-columns: 20px auto 30px;
+      grid-template-columns: 40px auto 20px;
+    }
+    .solo{
+      padding-bottom:3px;
     }
 
     .dollar{
       color:silver;
+      transform: translate(0px,-2px);
     }
     .money{
       min-width:60px;
@@ -178,6 +184,9 @@ const EggX = styled.div`
     }
     .more{
       cursor: pointer;
+      &.solo{
+        cursor: default;
+      }
       .more-arrow{
         display: inline-block;
         transform: translate(1px,4px);
@@ -196,17 +205,18 @@ const EggX = styled.div`
     .details{
       overflow:hidden;
       transition: height 0.1s;
-      margin-top: 3px;
+      margin-top: 8px;
       margin-bottom: 5px;
       &.hidden{
         height:0px;
         margin-bottom: 0px;
+        margin-top:3px;
       }
       .workers{
-        margin-left: 20px;
+        /* margin-left: 20px; */
       }
       .worker-icon{
-        transform:translate(1px,0);
+        transform:translate(5px,2px);
       }
 
       }

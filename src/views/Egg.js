@@ -95,22 +95,28 @@ function Money(props){
   let opts = { format: '%v' }
   const pay = currency(props.money,opts)
   const workers = currency(props.workers,opts)
+  let more
+  let arrow = false
+  if(Object.keys(people[props.person].icons).length > 0){
+    more = <MoneyRow person={props.person} source="workers" pay={workers} details={props.details}/>
+    arrow = true
+  }
 
     return(
     <div className="money-container">
-      <MoneyRow person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} details={props.details}/>
-      <MoneyRow person={props.person} source="workers" pay={workers} details={props.details}/>
+      <MoneyRow arrow={arrow} person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} details={props.details}/>
+      {more}
     </div>
   )
 }
 
 function MoneyRow(props){
-  const arrow =
-  <div key={"arrow"} className="more-arrow">
-    {triangle(5)}
-  </div>
+
+  const arrow = props.arrow
+  ? <div key={"arrow"} className="more-arrow">{triangle(5)}</div>
+  : ""
   const icons = getIcons()
-  const more = icons ? [icons[0],arrow] : ""
+  const more = icons ? arrow : ""
   const details = props.details ? "details" : "details hidden"
 
     function getIcons(){
@@ -130,16 +136,17 @@ function MoneyRow(props){
 
     switch(props.source){
       case "workers":
-        dollar = ""
-        icon = <div className="worker-icon"><WorkersIcon/></div>
+        dollar = <span>$<WorkersIcon className="worker-icon"/></span>
+        icon = <div className="brand-icon"></div>
         className = props.details ? "details" : "details hidden"
         break
       default:
       case "rate":
         dollar = "$"
         const c = props.details ? "close" : ""
-        icon = <div className={`more ${c}`} onClick={props.moreOnClick}>{more}</div>
-        className = ""
+        const solo = props.arrow ? "" : "solo"
+        icon = <div className={`more ${c} ${solo}`} onClick={props.moreOnClick}>{more}</div>
+        className = solo
         break
     }
 
