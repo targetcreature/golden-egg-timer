@@ -136,7 +136,7 @@ function MoneyRow(props){
 
     switch(props.source){
       case "workers":
-        dollar = <span>$<WorkersIcon className="worker-icon"/></span>
+        dollar = <span><WorkersIcon className="worker-icon"/></span>
         icon = <div className="brand-icon"></div>
         className = props.details ? "details" : "details hidden"
         break

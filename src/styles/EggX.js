@@ -165,7 +165,7 @@ const EggX = styled.div`
 
     .dollar{
       color:silver;
-      transform: translate(0px,-2px);
+      transform: translate(0,-2px);
     }
     .money{
       min-width:60px;
@@ -216,7 +216,7 @@ const EggX = styled.div`
         /* margin-left: 20px; */
       }
       .worker-icon{
-        transform:translate(5px,2px);
+        transform:translate(0,2px);
       }
 
       }
