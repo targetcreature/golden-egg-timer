@@ -1,14 +1,17 @@
-import styled from "styled-components"
-import { rgba } from "polished"
-import media from "../utils/media"
+import styled, { injectGlobal } from "styled-components"
+import { rgba, fontFace } from "polished"
+import media from "../../utils/media"
+import EtchFont from "../../assets/fonts/SymphonieCAT.ttf"
 
 const ratio = 9/16
 const desktop_height = 75
 const height = desktop_height + "vh"
 
-const eggWidth = 350;
+const eggWidth = 350
 
-const AppX = styled.div`
+
+export default styled.div`
+
     ${media.phone`
       width:100vw;
       height:92vh;
@@ -30,52 +33,6 @@ const AppX = styled.div`
         color: black;
         font-size: initial;
       }
-    }
-
-    .menu{
-      z-index: 999;
-      ${media.phone`
-        position: absolute;
-        top: 10px;
-        right: 0px;
-      `}
-      position: relative;
-      width:75px;
-      height:75px;
-      top: 70px;
-      right: -240px;
-      ${'' /* display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center; */}
-
-      .person-settings{
-        transform: scale(-1,1);
-      }
-      select{
-        position: absolute;
-        top:0;
-        left: 0;
-        width:75px;
-        height:75px;
-        color:transparent;
-      }
-
-      .mute,
-      .info
-      {
-        cursor: pointer;
-        margin-top: 15px;
-        svg{
-          width: 28px;
-          height: 28px;
-          color: ${rgba("seagreen",1)};
-        }
-      }
-  }
-
-    .main{
-      margin-top:8vh;
     }
 
     .egg-stand-wrap{
@@ -115,6 +72,10 @@ const AppX = styled.div`
       border-bottom: 2px solid rgba(0,0,0,0.5);
     }
     .egg-stand-title{
+      ${fontFace({
+        "fontFamily": "Sans",
+        "fontFilePath": `${EtchFont}`
+        })};
       position: absolute;
       font-size: 40px;
       width: 350px;
@@ -155,5 +116,3 @@ const AppX = styled.div`
     }
 
 `
-
-export { AppX }

@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import people from "./data/people"
-import Egg from "./views/Egg"
-import Stand from "./views/Stand"
-import Menu from "./views/Menu"
-import {
-  AppX
-} from "./styles/AppX"
+
+/* Components */
+import Main from "./components/Main/MainStyles"
 import "./styles/Fonts.css"
-import sf from "./modules/StateFunctions"
+
+/* Containers */
+import Egg from "./components/Egg/Egg"
+import Stand from "./components/Stand/Stand"
+import Menu from "./components/Menu/Menu"
+
+/* Data & Assets */
+import PEOPLE from "./data/people"
 import TickSound from "./assets/tick.wav"
-// import logo from './logo.svg'
+
+/* Funcs */
+import SF from "./modules/StateFunctions"
+
 
 class App extends Component {
   constructor(props){
@@ -20,68 +26,69 @@ class App extends Component {
       running:0,
     }
     this.state = {
+      people: PEOPLE,
       timeType: "sec",
-      details:0,
+      isDetails:0,
       mute:0,
       time:15,
       running:0,
       lastTime:15,
-      person: Object.keys(people)[0],
-      category:"corporate"
+      person: Object.keys(PEOPLE)[0],
+      category:"post-it"
     }
   }
 
   render() {
     return (
-      <AppX>
+      <Main>
         <Menu
+          people = {this.state.people}
           person={this.state.person}
           peopleOnChange={this.peopleOnChange}
-          toggleMute={this.toggleMute}
-          mute={this.state.mute}
-
         />
 
-        <div className="main">
-          <Egg
-            time={this.state.time}
-            money={this.state.money}
-            timeOnChange={this.timeOnChange}
-            dial={this.state.dial}
-            count={this.state.count}
+        <Egg
+          time={this.state.time}
+          dial={this.state.dial}
 
-            toggleTimer={this.toggleTimer}
-            running={this.state.running}
-            reset={this.reset}
+          person={{
 
-            start={this.state.start}
+          }}
 
-            mute={this.state.mute}
-            toggleMute={this.toggleMute}
-            details={this.state.details}
-            toggleDetails={this.toggleDetails}
+          timeType={this.state.timeType}
+          running={this.state.running}
+          people={this.state.people}
+          money={this.state.money}
 
-            workers={this.state.workers}
+          timeOnChange={this.timeOnChange}
+          toggleTimer={this.toggleTimer}
+          reset={this.reset}
 
-            // menu
-            person={this.state.person}
-            peopleOnChange={this.peopleOnChange}
-            lastTime={this.state.lastTime}
-            timeType={this.state.timeType}
-            timeTypeOnChange={this.timeTypeOnChange}
-            startTimer={this.startTimer}
-            stopTimer={this.stopTimer}
-            cat={this.state.category}
-          />
-          <Stand/>
-        </div>
-      </AppX>
+          isDetails={this.state.isDetails}
+          toggleDetails={this.toggleDetails}
+
+          mute={this.state.mute}
+          toggleMute={this.toggleMute}
+
+          workers={this.state.workers}
+
+          // menu
+          person={this.state.person}
+          peopleOnChange={this.peopleOnChange}
+          lastTime={this.state.lastTime}
+          timeTypeOnChange={this.timeTypeOnChange}
+          startTimer={this.startTimer}
+          stopTimer={this.stopTimer}
+          cat={this.state.category}
+        />
+        <Stand/>
+      </Main>
     )
   }
 
   componentDidMount = () => {
     this.setState({...this.defaults})
-    this.setState(sf.timer.set.dial)
+    this.setState(SF.timer.set.dial)
 
     const tickwav = new Audio(TickSound)
     this.setState({wav:tickwav})
@@ -118,9 +125,9 @@ class App extends Component {
     this.soundTick()
   }
 
-  timeTick = () => this.setState(sf.timer.tick.time)
-  moneyTick = () => this.setState(sf.timer.tick.money)
-  dialTick = () => this.setState(sf.timer.tick.dial)
+  timeTick = () => this.setState(SF.timer.tick.time)
+  moneyTick = () => this.setState(SF.timer.tick.money)
+  dialTick = () => this.setState(SF.timer.tick.dial)
   soundTick = () => {
     if(!this.state.mute){
       this.state.wav.play()
@@ -131,9 +138,9 @@ class App extends Component {
   timeOnChange = (event) => {
     const time = event.target.value
     this.stopTimer()
-    this.setState(sf.timer.set.time(this.state,time))
-    this.setState(sf.timer.set.dial)
-    this.setState(sf.timer.set.money)
+    this.setState(SF.timer.set.time(this.state,time))
+    this.setState(SF.timer.set.dial)
+    this.setState(SF.timer.set.money)
   }
 
   getTime = (val) => {
@@ -146,22 +153,22 @@ class App extends Component {
     const val = event.target.value
     const time = this.getTime(val)
     this.stopTimer()
-    this.setState(sf.timer.set.timeType(this.state,val))
+    this.setState(SF.timer.set.timeType(this.state,val))
     this.setState({time:time})
-    this.setState(sf.timer.set.dial)
-    this.setState(sf.timer.set.money)
+    this.setState(SF.timer.set.dial)
+    this.setState(SF.timer.set.money)
   }
 
   peopleOnChange = (e) => {
-    this.setState({person:e.target.value, details:0})
+    this.setState({person:e.target.value, isDetails:0})
   }
 
   reset = () => {
     this.stopTimer()
     this.setState({...this.defaults})
-    this.setState(sf.timer.set.time(this.state,this.state.lastTime))
-    this.setState(sf.timer.set.dial)
-    this.setState(sf.timer.set.money)
+    this.setState(SF.timer.set.time(this.state,this.state.lastTime))
+    this.setState(SF.timer.set.dial)
+    this.setState(SF.timer.set.money)
   }
 
   toggleMute = () => {
@@ -171,9 +178,8 @@ class App extends Component {
   }
 
   toggleDetails = () => {
-    console.log("hello")
-    const n = !this.state.details
-    this.setState({details:n})
+    const n = !this.state.isDetails
+    this.setState({isDetails:n})
   }
 
 }

@@ -1,11 +1,6 @@
 import React from "react"
-import lifecycle from "react-pure-lifecycle"
 import currency from "format-currency"
-import {
-  EggX
-} from "../styles/EggX"
-// import Menu from "./Menu"
-import people from "../data/people"
+import Egg from "./EggStyles"
 import {
   FaPlay,
   FaPause,
@@ -13,21 +8,12 @@ import {
   FaVolumeUp as VolIcon,
   FaVolumeMute as MuteIcon,
   FaPeopleCarry as WorkersIcon,
-  FaSlidersH as SettingsIcon,
-  FaQuestion as InfoIcon,
  } from "react-icons/fa"
+ import { triangle } from "../../utils/shapes"
 
- import { triangle } from "../utils/shapes"
 
-import {
-  // IoIosPeople as Workers,
-} from "react-icons/io"
-
-const componentDidMount = () => {}
-
-function Egg(props){
-  return(
-    <EggX
+export default(props) => (
+    <Egg
       time={props.time}
       timeType={props.timeType}
       dial={props.dial}
@@ -35,10 +21,8 @@ function Egg(props){
       <Person props={props}/>
       <Console props={props}/>
       <Dial time={props.time} start={props.start} running={props.running}/>
-    </EggX>
-
-        )
-}
+    </Egg>
+)
 
 function Person(p){
   const props = p.props
@@ -48,20 +32,19 @@ function Person(p){
 
   return (
     <div className="person-container">
-      <div className={props.cat + " paper"}/>
-      <div className={props.cat + " personWrap"}>
-        <select value={props.person} onChange={props.peopleOnChange}>
-          {peopleOpts}
-        </select>
+      <div className="personWrap">
         <div className="textWrap">
-          <div className={props.cat + " person"}>{person}</div>
+          <select value={props.person} onChange={props.peopleOnChange}>
+            {peopleOpts}
+          </select>
+          <div className="person">{person}</div>
         </div>
       </div>
     </div>
   )
 
   function getPeople(){
-    const list = Object.keys(people)
+    const list = Object.keys(props.people)
     const peopleOpts = []
     for(let i=0; i<list.length; i++){
       peopleOpts.push(
@@ -72,10 +55,6 @@ function Person(p){
   }
 
   function getPerson(){
-    // if(props.cat === "corporate"){
-    //   const split = props.person.split(" ")
-    //   return `[${split[0]}] [${split[1]}]`
-    // }
     return props.person
   }
 }
@@ -85,52 +64,46 @@ function Console(p){
   return(
   <div className="console">
     <Time props={props}/>
-    <Money workers={props.workers} toggleDetails={props.toggleDetails} details={props.details} money={props.money} toggleMute={props.toggleMute} mute={props.mute} person={props.person}/>
+    <Money
+      people={props.people}
+      workers={props.workers}
+      toggleDetails={props.toggleDetails}
+      isDetails={props.isDetails}
+      money={props.money}
+      toggleMute={props.toggleMute}
+      mute={props.mute}
+      person={props.person}
+    />
     <Buttons time={props.time} toggleTimer={props.toggleTimer} running={props.running} reset={props.reset} toggleMute={props.toggleMute} mute={props.mute}/>
   </div>
   )
 }
 
 function Money(props){
+  const people = props.people
   let opts = { format: '%v' }
   const pay = currency(props.money,opts)
   const workers = currency(props.workers,opts)
   let more
   let arrow = false
   if(Object.keys(people[props.person].icons).length > 0){
-    more = <MoneyRow person={props.person} source="workers" pay={workers} details={props.details}/>
+    more = <MoneyRow person={props.person} source="workers" pay={workers} isDetails={props.isDetails}/>
     arrow = true
   }
 
     return(
     <div className="money-container">
-      <MoneyRow arrow={arrow} person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} details={props.details}/>
+      <MoneyRow people={props.people} arrow={arrow} person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} isDetails={props.isDetails}/>
       {more}
     </div>
   )
 }
 
 function MoneyRow(props){
-
-  const arrow = props.arrow
+  const more = props.arrow
   ? <div key={"arrow"} className="more-arrow">{triangle(5)}</div>
   : ""
-  const icons = getIcons()
-  const more = icons ? arrow : ""
-  const details = props.details ? "details" : "details hidden"
 
-    function getIcons(){
-      const icons = []
-      const iconData = people[props.person].icons
-      const keys = Object.keys(iconData)
-      if(!keys) return
-      else{
-        for(let i = 0; i<keys.length; i++){
-          icons.push(<span key={i}>{iconData[keys[i]]}</span>)
-        }
-        return icons
-      }
-    }
 
     let dollar, icon, className
 
@@ -138,12 +111,12 @@ function MoneyRow(props){
       case "workers":
         dollar = <span><WorkersIcon className="worker-icon"/></span>
         icon = <div className="brand-icon"></div>
-        className = props.details ? "details" : "details hidden"
+        className = props.isDetails ? "details" : "details hidden"
         break
       default:
       case "rate":
         dollar = "$"
-        const c = props.details ? "close" : ""
+        const c = props.isDetails ? "close" : ""
         const solo = props.arrow ? "" : "solo"
         icon = <div className={`more ${c} ${solo}`} onClick={props.moreOnClick}>{more}</div>
         className = solo
@@ -163,7 +136,6 @@ function Dial(props){
   // const area = Math.PI*149.95^2
   const area = Math.PI*150^2
   const ticks = getTicks()
-  const rotating = props.running === 1 ? "rotating" : ""
 
   return(
     <div className="dial-container">
@@ -218,7 +190,6 @@ function Dial(props){
 
 function Buttons(props){
 
-  const infoButton = getInfo()
   const playButton = getPlay()
   const muteButton = getMute()
 
@@ -229,15 +200,6 @@ function Buttons(props){
     {muteButton}
   </div>
   )
-
-  function getInfo(){
-    const info = <InfoIcon size="8px"/>
-      return(
-      <div className="info settings" onClick={props.toggleInfo}>
-        {info}
-      </div>
-      )
-      }
 
   function getPlay(){
     const buttonSize = "1em"
@@ -291,9 +253,3 @@ function Time(p){
     </div>
   )
 }
-
-const methods = {
-  componentDidMount
-}
-
-export default lifecycle(methods)(Egg)

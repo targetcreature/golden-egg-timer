@@ -6819,10 +6819,6 @@ react-is@^16.6.0:
   version "16.6.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.1.tgz#f77b1c3d901be300abe8d58645b7a59e794e5982"
 
-react-pure-lifecycle@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-pure-lifecycle/-/react-pure-lifecycle-3.0.0.tgz#8077c7294904c7f85124a976c09ddec96bc119aa"
-
 react-scripts@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.1.tgz#c2959a756b0b61d3090adece0d7aedd324dff8a5"

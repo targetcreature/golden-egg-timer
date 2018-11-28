@@ -1,50 +1,38 @@
 import React from "react"
-import {
-  FaVolumeUp as VolIcon,
-  FaVolumeMute as MuteIcon,
- } from "react-icons/fa"
+import Menu from "./MenuStyles"
 import { MdFingerprint as PersonIcon } from "react-icons/md"
 
-import people from "../data/people"
-
-function Menu(props){
-  return(
-    <div className="menu">
+export default (props) => (
+    <Menu>
       <People props={props}/>
-    </div>
-      )
-}
-
+    </Menu>
+)
 
 function People(p){
   const props = p.props
-  const peopleOpts = getPeople()
+  const options = getPeople()
 
   return(
-    <>
+    <React.Fragment>
       <PersonIcon className="person-settings"
         onClick={props.onClick}
         size="50px"
         fill="seagreen"
       />
       <select value={props.person} onChange={props.peopleOnChange}>
-        {peopleOpts}
+        {options}
       </select>
-    </>
+    </React.Fragment>
   )
+
   function getPeople(){
-    const list = Object.keys(people)
-    const peopleOpts = []
+    const list = Object.keys(props.people)
+    const options = []
     for(let i=0; i<list.length; i++){
-      peopleOpts.push(
+      options.push(
         <option key={list[i]} value={list[i]}>{list[i]}</option>
       )
     }
-    return peopleOpts
+    return options
   }
-
 }
-
-
-
-      export default Menu

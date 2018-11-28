@@ -1,48 +1,34 @@
 @font-face {
-  font-family: "Etching";
-  src: url(../assets/SymphonieCAT.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Handwriting";
-  src: url(../assets/Kids-Regular.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Stamped";
-  src: url(../assets/TopSecret.ttf) format("truetype");
-  src: url(../assets/WARTORN.TTF) format("truetype");
-  src: url(../assets/PAINP___.TTF) format("truetype");
+  font-family: "EggWriting";
+  src: url(../assets/fonts/PAINP___.TTF) format("truetype");
 }
 @font-face {
   font-family: "Dial";
-  src: url(../assets/typewcond_bold.otf) format("opentype");
+  src: url(../assets/fonts/typewcond_bold.otf) format("opentype");
 }
 @font-face {
   font-family: "Money";
-  src: url(../assets/LCDPHONE.ttf) format("truetype");
+  src: url(../assets/fonts/LCDPHONE.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Etching";
+  src: url(../assets/fonts/SymphonieCAT.ttf) format("truetype");
 }
 
 .egg-stand-title
 {
   font-family: "Etching";
 }
-.corporate{
-  font-family: "Stamped";
-  font-size:34px;
-  font-size:24px;
-  font-size:50px;
-}
-.post-it
+.person
 {
-  font-family: "Handwriting";
-  font-size:24px;
+  font-family: "EggWriting";
+  font-size:30px;
 }
-
 .time-option, text{
   font-family: "Dial";
   font-size: 10px;
   text-shadow: 0.33px 0.33px rgb(190, 164, 85);
 }
-
 .money{
   font-family: "Money";
 }
