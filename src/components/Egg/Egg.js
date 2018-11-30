@@ -38,6 +38,7 @@ function Person(p){
             {peopleOpts}
           </select>
           <div className="person">{person}</div>
+          <Company person={props.person} people={props.people}/>
         </div>
       </div>
     </div>
@@ -57,6 +58,15 @@ function Person(p){
   function getPerson(){
     return props.person
   }
+}
+
+function Company(props){
+  const company = props.people[props.person].company
+  return(
+    <div className="company-container">
+      {company}
+    </div>
+  )
 }
 
 function Console(p){

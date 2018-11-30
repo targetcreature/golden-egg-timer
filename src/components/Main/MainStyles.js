@@ -1,7 +1,5 @@
-import styled, { injectGlobal } from "styled-components"
-import { rgba, fontFace } from "polished"
+import styled from "styled-components"
 import media from "../../utils/media"
-import EtchFont from "../../assets/fonts/SymphonieCAT.ttf"
 
 const ratio = 9/16
 const desktop_height = 75
@@ -72,10 +70,6 @@ export default styled.div`
       border-bottom: 2px solid rgba(0,0,0,0.5);
     }
     .egg-stand-title{
-      ${fontFace({
-        "fontFamily": "Sans",
-        "fontFilePath": `${EtchFont}`
-        })};
       position: absolute;
       font-size: 40px;
       width: 350px;

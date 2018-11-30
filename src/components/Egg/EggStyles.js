@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { rgba } from "polished"
 import media from "../../utils/media"
 
@@ -37,6 +37,7 @@ export default styled.div`
     display: flex;
     justify-content: center;
     transform: rotate(-25deg) translate(-25px,-5px);
+    z-index: 999;
 
     .personWrap{
       text-align: center;
@@ -48,9 +49,9 @@ export default styled.div`
       .textWrap{
         display: flex;
         justify-content: center;
+        line-height:1;
         width: 125px;
         min-height: 75px;
-        z-index: 999;
         background:
         linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 20%, transparent 100%),
         linear-gradient(45deg, yellow 0%, yellow 100%);
@@ -65,10 +66,29 @@ export default styled.div`
         right: 0;
         bottom: 0;
         color: transparent;
+        z-index:100;
+      }
+
+      .company-container{
+        display: flex;
+        justify-content: center;
+        color: darkred;
+        font-size:18px;
+        position: absolute;
+        text-align:center;
+        line-height:30px;
+        top: 5px;
+        width:20px;
+        opacity:0.15;
+      }
+      .person{
+        margin-top: 20px;;
       }
     }
 
   }
+
+
 
   .console{
     display: flex;
@@ -84,7 +104,7 @@ export default styled.div`
     padding: 25px 20px 20px;
     width: 158px;
     height: 158px;
-    transform: translate(0,-8px);
+    transform: translate(0,-22px);
   }
 
   .time-container{

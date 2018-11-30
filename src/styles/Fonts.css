@@ -14,6 +14,10 @@
   font-family: "Etching";
   src: url(../assets/fonts/SymphonieCAT.ttf) format("truetype");
 }
+@font-face {
+  font-family: "Stamp";
+  src: url(../assets/fonts/WARTORN_.TTF) format("truetype");
+}
 
 .egg-stand-title
 {
@@ -31,4 +35,7 @@
 }
 .money{
   font-family: "Money";
+}
+.company-container{
+  font-family: "Stamp";
 }

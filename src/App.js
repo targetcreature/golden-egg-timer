@@ -34,7 +34,6 @@ class App extends Component {
       running:0,
       lastTime:15,
       person: Object.keys(PEOPLE)[0],
-      category:"post-it"
     }
   }
 
@@ -50,10 +49,6 @@ class App extends Component {
         <Egg
           time={this.state.time}
           dial={this.state.dial}
-
-          person={{
-
-          }}
 
           timeType={this.state.timeType}
           running={this.state.running}
@@ -72,14 +67,12 @@ class App extends Component {
 
           workers={this.state.workers}
 
-          // menu
           person={this.state.person}
           peopleOnChange={this.peopleOnChange}
           lastTime={this.state.lastTime}
           timeTypeOnChange={this.timeTypeOnChange}
           startTimer={this.startTimer}
           stopTimer={this.stopTimer}
-          cat={this.state.category}
         />
         <Stand/>
       </Main>
@@ -161,6 +154,7 @@ class App extends Component {
 
   peopleOnChange = (e) => {
     this.setState({person:e.target.value, isDetails:0})
+    this.reset()
   }
 
   reset = () => {
