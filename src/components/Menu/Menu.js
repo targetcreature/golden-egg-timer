@@ -1,5 +1,6 @@
 import React from "react"
 import Menu from "./MenuStyles"
+import Select from "react-select"
 import { MdFingerprint as PersonIcon } from "react-icons/md"
 
 export default (props) => (
@@ -15,7 +16,7 @@ function People(p){
   return(
     <React.Fragment>
       <PersonIcon className="person-settings"
-        onClick={props.onClick}
+          // onClick={props.onClick}
         size="50px"
         fill="seagreen"
       />

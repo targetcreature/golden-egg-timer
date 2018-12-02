@@ -10,6 +10,15 @@ const eggWidth = 350
 
 export default styled.div`
 
+  .mobile{
+    ${media.desktop`
+      display:none;
+    `}
+    ${media.phone`
+      display:block;
+    `}
+  }
+
     ${media.phone`
       width:100vw;
       height:92vh;
@@ -29,7 +38,12 @@ export default styled.div`
       appearance: none;
       option{
         color: black;
+        background: white;
         font-size: initial;
+      }
+      optgroup{
+        color:darkgoldenrod;
+        background: rgba(0,0,0,0.05);
       }
     }
 

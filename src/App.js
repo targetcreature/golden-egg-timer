@@ -40,12 +40,15 @@ class App extends Component {
   render() {
     return (
       <Main>
-        <Menu
-          people = {this.state.people}
-          person={this.state.person}
-          peopleOnChange={this.peopleOnChange}
-        />
+        <div className="mobile">
 
+          <Menu
+            people = {this.state.people}
+            person={this.state.person}
+            peopleOnChange={this.peopleOnChange}
+          />
+          
+        </div>
         <Egg
           time={this.state.time}
           dial={this.state.dial}

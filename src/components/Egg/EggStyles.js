@@ -82,7 +82,7 @@ export default styled.div`
         opacity:0.15;
       }
       .person{
-        margin-top: 20px;;
+        margin-top: 10px;;
       }
     }
 
@@ -104,7 +104,7 @@ export default styled.div`
     padding: 25px 20px 20px;
     width: 158px;
     height: 158px;
-    transform: translate(0,-22px);
+    transform: translate(0,-24px);
   }
 
   .time-container{
@@ -156,7 +156,7 @@ export default styled.div`
 
     .money-row{
       display: grid;
-      grid-template-columns: 40px auto 20px;
+      grid-template-columns: 40px auto 10px;
     }
     .solo{
       padding-bottom:3px;

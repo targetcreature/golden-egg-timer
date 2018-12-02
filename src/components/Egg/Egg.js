@@ -38,7 +38,7 @@ function Person(p){
             {peopleOpts}
           </select>
           <div className="person">{person}</div>
-          <Company person={props.person} people={props.people}/>
+          {/* <Company person={props.person} people={props.people}/> */}
         </div>
       </div>
     </div>
@@ -49,7 +49,9 @@ function Person(p){
     const peopleOpts = []
     for(let i=0; i<list.length; i++){
       peopleOpts.push(
+        <optgroup label={props.people[list[i]].company}>
           <option key={list[i]} value={list[i]}>{list[i]}</option>
+        </optgroup>
       )
     }
     return peopleOpts
@@ -103,8 +105,8 @@ function Money(props){
 
     return(
     <div className="money-container">
-      <MoneyRow people={props.people} arrow={arrow} person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} isDetails={props.isDetails}/>
-      {more}
+      <MoneyRow people={props.people} arrow={false} person={props.person} source="rate" pay={pay} moreOnClick={props.toggleDetails} isDetails={props.isDetails}/>
+      {/* {more} */}
     </div>
   )
 }
