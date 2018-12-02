@@ -18,6 +18,13 @@
   font-family: "Stamp";
   src: url(../assets/fonts/WARTORN_.TTF) format("truetype");
 }
+@font-face {
+  font-family: "About";
+  src: url(../assets/fonts/Hack-Regular.ttf) format("truetype");
+}
+.content{
+  font-family: "About";
+}
 
 .egg-stand-title
 {
@@ -34,7 +41,6 @@
   text-shadow: 0.33px 0.33px rgb(190, 164, 85);
 }
 .money,
-.content
 {
   font-family: "Money";
 }

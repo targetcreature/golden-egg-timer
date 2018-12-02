@@ -8,6 +8,7 @@ import {
   FaVolumeUp as VolIcon,
   FaVolumeMute as MuteIcon,
   FaCog as InfoIcon,
+  FaTimesCircle as CloseIcon,
   // FaPeopleCarry as WorkersIcon,
  } from "react-icons/fa"
  import { triangle } from "../../utils/shapes"
@@ -70,14 +71,21 @@ function Console(p){
     <Money
       people={props.people}
       workers={props.workers}
-      toggleDetails={props.toggleDetails}
-      isDetails={props.isDetails}
       money={props.money}
       toggleMute={props.toggleMute}
       mute={props.mute}
       person={props.person}
     />
-    <Buttons time={props.time} toggleTimer={props.toggleTimer} toggleInfo={props.toggleInfo} running={props.running} reset={props.reset} toggleMute={props.toggleMute} mute={props.mute}/>
+    <Buttons
+      time={props.time}
+      toggleTimer={props.toggleTimer}
+      toggleInfo={props.toggleInfo}
+      running={props.running}
+      reset={props.reset}
+      toggleMute={props.toggleMute}
+      mute={props.mute}
+      isInfo={props.isInfo}
+    />
   </div>
   )
 }
@@ -227,7 +235,8 @@ function Buttons(props){
   }
   function getInfo(){
     const size = 16;
-    let icon = <InfoIcon size={`${size}px`}/>
+    console.log(props.isDetails)
+    let icon = props.isInfo ? <CloseIcon size={`${size}px`}/> : <InfoIcon size={`${size}px`}/>
     return(
       <div className="info settings" onClick={props.toggleInfo}>
         {icon}

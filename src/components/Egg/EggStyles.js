@@ -221,6 +221,7 @@ export default styled.div`
   .button-container{
     display: grid;
     grid-template-columns: 1fr auto 1fr;
+    svg{ fill: rgba(0,0,0,0.8); }
     .icon{
       display: flex;
       justify-content: center;
@@ -244,6 +245,7 @@ export default styled.div`
     }
     .play svg{ margin:0 -1px 0 1px; }
     .pause svg{ margin:0 1px 0 -1px; }
+    .info svg{ fill: rgba(0,0,0,0.8); }
 
     .settings{
       cursor: pointer;
