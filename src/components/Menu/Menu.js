@@ -1,6 +1,5 @@
 import React from "react"
 import Menu from "./MenuStyles"
-import Select from "react-select"
 import { MdFingerprint as PersonIcon } from "react-icons/md"
 
 export default (props) => (
@@ -16,7 +15,6 @@ function People(p){
   return(
     <React.Fragment>
       <PersonIcon className="person-settings"
-          // onClick={props.onClick}
         size="50px"
         fill="seagreen"
       />
@@ -31,8 +29,10 @@ function People(p){
     const options = []
     for(let i=0; i<list.length; i++){
       options.push(
-        <option key={list[i]} value={list[i]}>{list[i]}</option>
-      )
+        <optgroup label={props.people[list[i]].company}>
+          <option key={list[i]} value={list[i]}>{list[i]}</option>
+        </optgroup>
+          )
     }
     return options
   }

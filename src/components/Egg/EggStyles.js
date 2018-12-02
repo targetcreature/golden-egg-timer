@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { rgba } from "polished"
 import media from "../../utils/media"
 
 const ratio = 9/16
@@ -10,7 +9,7 @@ const eggWidth = 350;
 const eggHeight = 475;
 
 const buttonSize = 45;
-const muteButton = 24;
+const sideButton = 30;
 
 export default styled.div`
 
@@ -87,8 +86,6 @@ export default styled.div`
     }
 
   }
-
-
 
   .console{
     display: flex;
@@ -253,8 +250,8 @@ export default styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      width: ${muteButton}px;
-      height: ${muteButton}px;
+      width: ${sideButton}px;
+      height: ${sideButton}px;
       border-radius: 100%;
       border: 1px solid #5e502e;
 

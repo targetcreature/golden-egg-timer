@@ -5,9 +5,10 @@ import Main from "./components/Main/MainStyles"
 import "./styles/Fonts.css"
 
 /* Containers */
+import Info from "./components/Info/Info"
 import Egg from "./components/Egg/Egg"
 import Stand from "./components/Stand/Stand"
-import Menu from "./components/Menu/Menu"
+// import Menu from "./components/Menu/Menu"
 
 /* Data & Assets */
 import PEOPLE from "./data/people"
@@ -24,11 +25,12 @@ class App extends Component {
       money:0,
       workers:0,
       running:0,
+      isInfo:0,
+      infoUnmounting:0,
     }
     this.state = {
       people: PEOPLE,
       timeType: "sec",
-      isDetails:0,
       mute:0,
       time:15,
       running:0,
@@ -40,15 +42,13 @@ class App extends Component {
   render() {
     return (
       <Main>
-        <div className="mobile">
+        {/* <Menu
+          people = {this.state.people}
+          person={this.state.person}
+          peopleOnChange={this.peopleOnChange}
+        /> */}
+        {this.state.isInfo ? <Info people={this.state.people} person={this.state.person} infoUnmounting={this.state.infoUnmounting}/> : null }
 
-          <Menu
-            people = {this.state.people}
-            person={this.state.person}
-            peopleOnChange={this.peopleOnChange}
-          />
-          
-        </div>
         <Egg
           time={this.state.time}
           dial={this.state.dial}
@@ -67,6 +67,7 @@ class App extends Component {
 
           mute={this.state.mute}
           toggleMute={this.toggleMute}
+          toggleInfo={this.toggleInfo}
 
           workers={this.state.workers}
 
@@ -177,6 +178,18 @@ class App extends Component {
   toggleDetails = () => {
     const n = !this.state.isDetails
     this.setState({isDetails:n})
+  }
+
+  toggleInfo = () => {
+    let delay = 0
+    if(this.state.isInfo){
+      delay = 500
+      this.setState({infoUnmounting:1})
+    }
+    const n = !this.state.isInfo
+    setTimeout(()=>{
+      this.setState({isInfo:n, infoUnmounting:0})
+    },delay)
   }
 
 }

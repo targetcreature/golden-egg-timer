@@ -7,7 +7,8 @@ import {
   FaUndoAlt,
   FaVolumeUp as VolIcon,
   FaVolumeMute as MuteIcon,
-  FaPeopleCarry as WorkersIcon,
+  FaCog as InfoIcon,
+  // FaPeopleCarry as WorkersIcon,
  } from "react-icons/fa"
  import { triangle } from "../../utils/shapes"
 
@@ -38,7 +39,6 @@ function Person(p){
             {peopleOpts}
           </select>
           <div className="person">{person}</div>
-          {/* <Company person={props.person} people={props.people}/> */}
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@ function Person(p){
     const peopleOpts = []
     for(let i=0; i<list.length; i++){
       peopleOpts.push(
-        <optgroup label={props.people[list[i]].company}>
+        <optgroup label={props.people[list[i]].company} key={i}>
           <option key={list[i]} value={list[i]}>{list[i]}</option>
         </optgroup>
       )
@@ -60,15 +60,6 @@ function Person(p){
   function getPerson(){
     return props.person
   }
-}
-
-function Company(props){
-  const company = props.people[props.person].company
-  return(
-    <div className="company-container">
-      {company}
-    </div>
-  )
 }
 
 function Console(p){
@@ -86,22 +77,22 @@ function Console(p){
       mute={props.mute}
       person={props.person}
     />
-    <Buttons time={props.time} toggleTimer={props.toggleTimer} running={props.running} reset={props.reset} toggleMute={props.toggleMute} mute={props.mute}/>
+    <Buttons time={props.time} toggleTimer={props.toggleTimer} toggleInfo={props.toggleInfo} running={props.running} reset={props.reset} toggleMute={props.toggleMute} mute={props.mute}/>
   </div>
   )
 }
 
 function Money(props){
-  const people = props.people
   let opts = { format: '%v' }
   const pay = currency(props.money,opts)
-  const workers = currency(props.workers,opts)
-  let more
-  let arrow = false
-  if(Object.keys(people[props.person].icons).length > 0){
-    more = <MoneyRow person={props.person} source="workers" pay={workers} isDetails={props.isDetails}/>
-    arrow = true
-  }
+  // const people = props.people
+  // const workers = currency(props.workers,opts)
+  // let more
+  // let arrow = false
+  // if(Object.keys(people[props.person].icons).length > 0){
+  //   more = <MoneyRow person={props.person} source="workers" pay={workers} isDetails={props.isDetails}/>
+  //   arrow = true
+  // }
 
     return(
     <div className="money-container">
@@ -121,7 +112,7 @@ function MoneyRow(props){
 
     switch(props.source){
       case "workers":
-        dollar = <span><WorkersIcon className="worker-icon"/></span>
+        // dollar = <span><WorkersIcon className="worker-icon"/></span>
         icon = <div className="brand-icon"></div>
         className = props.isDetails ? "details" : "details hidden"
         break
@@ -202,12 +193,13 @@ function Dial(props){
 
 function Buttons(props){
 
-  const playButton = getPlay()
   const muteButton = getMute()
+  const playButton = getPlay()
+  const infoButton = getInfo()
 
   return(
   <div className="button-container">
-    <div className="empty"/>
+    {infoButton}
     {playButton}
     {muteButton}
   </div>
@@ -223,13 +215,21 @@ function Buttons(props){
   }
 
   function getMute(){
-    const size = 12;
+    const size = 16;
     let icon = props.mute === true
     ? <MuteIcon size={`${size}px`}/>
     : <VolIcon size={`${size}px`}/>
-
     return(
       <div className="mute settings" onClick={props.toggleMute}>
+        {icon}
+      </div>
+    )
+  }
+  function getInfo(){
+    const size = 16;
+    let icon = <InfoIcon size={`${size}px`}/>
+    return(
+      <div className="info settings" onClick={props.toggleInfo}>
         {icon}
       </div>
     )

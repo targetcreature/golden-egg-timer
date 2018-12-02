@@ -22,13 +22,12 @@ export default styled.div`
     ${media.phone`
       width:100vw;
       height:92vh;
-      margin-top:8vh;
+      margin-top:7vh;
     `}
     height:${height};
     width:calc(${height} * ${ratio});
     font-size:16px;
     background: darkkhaki;
-    margin-top:-40px;
 
     select{
       font-size: 16px;
@@ -36,6 +35,7 @@ export default styled.div`
       border: none;
       cursor: pointer;
       appearance: none;
+      outline: none;
       option{
         color: black;
         background: white;
