@@ -1,5 +1,3 @@
-import people from "../data/people"
-
 let timer = {}
 
 timer.set = {
@@ -26,15 +24,9 @@ timer.tick = {
   time: (s) => { return {
     time:s.time-1
   }},
-  money: (s) => {
-    const person = people[s.person]
-    const seconds = 60 * 60 * 40 * 52
-    const rate = person.rate / seconds
-    const wrate = person.workers / seconds
-    return{
-      money: s.money + rate,
-      workers: s.workers + wrate
-    }},
+  money: (s) => { return{
+    money: s.money + s.rate
+  }},
   dial: (s) => {
     const sec = 6
     const min = sec / 60

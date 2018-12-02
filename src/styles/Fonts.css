@@ -33,7 +33,9 @@
   font-size: 10px;
   text-shadow: 0.33px 0.33px rgb(190, 164, 85);
 }
-.money{
+.money,
+.content
+{
   font-family: "Money";
 }
 .company-container{

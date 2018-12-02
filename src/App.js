@@ -47,7 +47,7 @@ class App extends Component {
           person={this.state.person}
           peopleOnChange={this.peopleOnChange}
         /> */}
-        {this.state.isInfo ? <Info people={this.state.people} person={this.state.person} infoUnmounting={this.state.infoUnmounting}/> : null }
+        {this.state.isInfo ? <Info people={this.state.people} person={this.state.person} rate={this.state.rate} infoUnmounting={this.state.infoUnmounting}/> : null }
 
         <Egg
           time={this.state.time}
@@ -84,7 +84,9 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({...this.defaults})
+    const person = Object.keys(PEOPLE)[0]
+    const rate = this.getRate(person)
+    this.setState({...this.defaults, rate:rate})
     this.setState(SF.timer.set.dial)
 
     const tickwav = new Audio(TickSound)
@@ -101,7 +103,6 @@ class App extends Component {
   }
 
   startTimer = () => {
-    console.log(this.state.time)
     this.tick()
     this.setState({timer: setInterval(this.tick,1000), running:1})
   }
@@ -157,8 +158,16 @@ class App extends Component {
   }
 
   peopleOnChange = (e) => {
-    this.setState({person:e.target.value, isDetails:0})
+    const person = e.target.value
+    const rate = this.getRate(person)
+    this.setState({person:person, rate:rate, isDetails:0})
     this.reset()
+  }
+
+  getRate = (p) => {
+    const annual = this.state.people[p].rate
+    const seconds = 60 * 60 * 40 * 52
+    return annual / seconds
   }
 
   reset = () => {
