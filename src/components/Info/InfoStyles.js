@@ -10,6 +10,8 @@ export default styled.div`
   padding: 20px;
   display: flex;
   justify-content: center;
+  transform: translate(0,-100%);
+  transition: transform .5s;
 
 
   .content{
@@ -24,12 +26,11 @@ export default styled.div`
     }
   }
 
-  &.mount{
+  &.mounted{
+    transform: translate(0,0);
   }
   &.unmount{
-    transform: translate(0,-110%);
-    transition: transform .5s;
-
+    transform: translate(0,-100%);
   }
 
 
@@ -45,7 +46,7 @@ export default styled.div`
     a{
       color:cyan;
       &:hover{
-        color:lime;
+        color:magenta;
       }
     }
     .title-line{

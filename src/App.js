@@ -25,7 +25,7 @@ class App extends Component {
       money:0,
       workers:0,
       running:0,
-      isInfo:1,
+      isInfo:0,
       infoUnmounting:0,
     }
     this.state = {
@@ -63,7 +63,7 @@ class App extends Component {
           reset={this.reset}
 
           isInfo={this.state.isInfo}
-          
+
           mute={this.state.mute}
           toggleMute={this.toggleMute}
           toggleInfo={this.toggleInfo}

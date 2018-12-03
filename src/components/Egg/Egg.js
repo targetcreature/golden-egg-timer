@@ -235,7 +235,6 @@ function Buttons(props){
   }
   function getInfo(){
     const size = 16;
-    console.log(props.isDetails)
     let icon = props.isInfo ? <CloseIcon size={`${size}px`}/> : <InfoIcon size={`${size}px`}/>
     return(
       <div className="info settings" onClick={props.toggleInfo}>
