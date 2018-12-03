@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import media from "../../utils/media"
+import crack from "../../assets/crack.png"
 
 const ratio = 9/16
 const desktop_height = 75
@@ -31,6 +32,17 @@ export default styled.div`
     left:calc((100vw - ${eggWidth}px)/2);
     transform: scale(1);
   `}
+
+  .crack{
+    position: absolute;
+    width: 125px;
+    height: 225px;
+    background: url(${crack});
+    top:30px
+    left: 61px;
+    background-size: cover;
+    transform: rotate(-25deg);
+  }
 
   .person-container{
     display: flex;
@@ -244,7 +256,6 @@ export default styled.div`
       }
     }
     .play svg{ margin:0 -1px 0 1px; }
-    .pause svg{ margin:0 1px 0 -1px; }
     .info svg{ fill: rgba(0,0,0,0.8); }
 
     .settings{
@@ -277,6 +288,7 @@ export default styled.div`
     transform: translate(0,0px);
 
     .arrow{
+      ${'' /* display: none; */}
       top: 0;left: 0;
       z-index: 3;
       font-size: 14px;

@@ -18,7 +18,7 @@ export default styled.div`
     ${media.desktop`
       max-width:500px;
       `}
-    background: #222;
+    background: #333;
     box-shadow: inset 0px 0px 25px #111;
     border-radius: 20px;
     a{
@@ -35,9 +35,7 @@ export default styled.div`
 
 
   .about{
-    padding: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    padding: 20px 20px 10px;
     color:rgba(255,255,255,0.66);
     font-size: 1em;
     .title{
@@ -55,10 +53,11 @@ export default styled.div`
   }
 
   .credits{
-    padding: 0px 20px 10px;
+    padding: 10px 20px 8px;
     font-size:12px;
     ${'' /* background: rgba(255,255,255,0.05); */}
     color: rgba(255,255,255,0.75);
+    background: #222;
     a{
       color: rgba(255,255,255,0.5);
       &:hover{

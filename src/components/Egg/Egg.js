@@ -20,6 +20,7 @@ export default(props) => (
       timeType={props.timeType}
       dial={props.dial}
     >
+      <div className="crack"/>
       <Person props={props}/>
       <Console props={props}/>
       <Dial time={props.time} start={props.start} running={props.running}/>

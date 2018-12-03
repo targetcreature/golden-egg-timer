@@ -21,17 +21,15 @@ export default class extends React.Component{
   }
 
   render(){
-
     const props = this.props
 
     const people = props.people
     const person = props.person
     const source = people[person].source
     const company = people[person].company
+
     let opts = { format: '%s%v', symbol: '$' }
     const pay = currency(props.rate,opts)
-
-    // const unmount = props.infoUnmounting ? "unmount" : ""
 
     let classes = ""
     if(this.state.mounted) classes += "mounted "
